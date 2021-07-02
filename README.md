@@ -23,6 +23,6 @@ IDA reverse file of the original Bedlam.exe [here](https://www.dropbox.com/sh/h0
 1. Open solution vc2019/Bedlam.sln in Visual Studio 2019
 2. Compile x86 platform
 3. Put compiled .exe file in your Bedlam folder. Or put Bedlam files in VS output directory
-4. Run
+4. Run (You may also need to find the DPLAY.DLL and SMACKW32.DLL files and put them in Bedlam folder, near executable file)
 
 To run in a window mode, set the application 256 color compatibility mode.
