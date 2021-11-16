@@ -51,5 +51,8 @@
     </None>
     <None Include="..\README.md" />
     <None Include="..\.gitignore" />
+    <None Include="..\includes\smackw32.inc">
+      <Filter>Includes</Filter>
+    </None>
   </ItemGroup>
 </Project>

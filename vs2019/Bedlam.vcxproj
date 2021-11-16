@@ -33,6 +33,7 @@
     <None Include="..\includes\dsound.inc" />
     <None Include="..\includes\gdi32.inc" />
     <None Include="..\includes\kernel32.inc" />
+    <None Include="..\includes\smackw32.inc" />
     <None Include="..\includes\user32.inc" />
     <None Include="..\includes\winmm.inc" />
     <None Include="..\README.md" />
