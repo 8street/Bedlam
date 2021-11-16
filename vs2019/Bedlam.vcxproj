@@ -15,20 +15,20 @@
     <Library Include="..\libs\smackw32.lib" />
   </ItemGroup>
   <ItemGroup>
-    <MASM Include="..\sources\main.asm" />
+    <None Include="..\.gitignore" />
+    <None Include="..\ASM_includes\advapi32.inc" />
+    <None Include="..\ASM_includes\ddraw.inc" />
+    <None Include="..\ASM_includes\dplay.inc" />
+    <None Include="..\ASM_includes\dsound.inc" />
+    <None Include="..\ASM_includes\gdi32.inc" />
+    <None Include="..\ASM_includes\kernel32.inc" />
+    <None Include="..\ASM_includes\smackw32.inc" />
+    <None Include="..\ASM_includes\user32.inc" />
+    <None Include="..\ASM_includes\winmm.inc" />
+    <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\.gitignore" />
-    <None Include="..\includes\advapi32.inc" />
-    <None Include="..\includes\ddraw.inc" />
-    <None Include="..\includes\dplay.inc" />
-    <None Include="..\includes\dsound.inc" />
-    <None Include="..\includes\gdi32.inc" />
-    <None Include="..\includes\kernel32.inc" />
-    <None Include="..\includes\smackw32.inc" />
-    <None Include="..\includes\user32.inc" />
-    <None Include="..\includes\winmm.inc" />
-    <None Include="..\README.md" />
+    <MASM Include="..\ASM_sources\bedlam.asm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -66,15 +66,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>;$(ProjectDir)..\includes;$(IncludePath)</IncludePath>
+    <IncludePath>;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
-    <IntDir>$(SolutionDir)$(Configuration)\temp</IntDir>
+    <IntDir>$(SolutionDir)$(Configuration)\temp\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>;$(ProjectDir)..\includes;$(IncludePath)</IncludePath>
+    <IncludePath>;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
-    <IntDir>$(SolutionDir)$(Configuration)\temp</IntDir>
+    <IntDir>$(SolutionDir)$(Configuration)\temp\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
