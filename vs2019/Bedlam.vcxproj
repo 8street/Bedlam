@@ -30,6 +30,62 @@
   <ItemGroup>
     <MASM Include="..\ASM_sources\bedlam.asm" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CPP_sources\bedlam.h" />
+    <ClInclude Include="..\CPP_sources\bedlam_draw.h" />
+    <ClInclude Include="..\CPP_sources\bin_file.h" />
+    <ClInclude Include="..\CPP_sources\exported_func.h" />
+    <ClInclude Include="..\CPP_sources\file.h" />
+    <ClInclude Include="..\CPP_sources\helper.h" />
+    <ClInclude Include="..\CPP_sources\ingame_music.h" />
+    <ClInclude Include="..\CPP_sources\keyboard.h" />
+    <ClInclude Include="..\CPP_sources\main.h" />
+    <ClInclude Include="..\CPP_sources\mouse.h" />
+    <ClInclude Include="..\CPP_sources\options.h" />
+    <ClInclude Include="..\CPP_sources\palette.h" />
+    <ClInclude Include="..\CPP_sources\player.h" />
+    <ClInclude Include="..\CPP_sources\raw_file.h" />
+    <ClInclude Include="..\CPP_sources\render_position.h" />
+    <ClInclude Include="..\CPP_sources\resolutions.h" />
+    <ClInclude Include="..\CPP_sources\screenshot.h" />
+    <ClInclude Include="..\CPP_sources\screen_data.h" />
+    <ClInclude Include="..\CPP_sources\sdl_cursor.h" />
+    <ClInclude Include="..\CPP_sources\sdl_event.h" />
+    <ClInclude Include="..\CPP_sources\sdl_sound.h" />
+    <ClInclude Include="..\CPP_sources\sdl_texture.h" />
+    <ClInclude Include="..\CPP_sources\sdl_timer.h" />
+    <ClInclude Include="..\CPP_sources\sdl_window.h" />
+    <ClInclude Include="..\CPP_sources\tiles.h" />
+    <ClInclude Include="..\CPP_sources\timer.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CPP_sources\bedlam_draw.cpp" />
+    <ClCompile Include="..\CPP_sources\bin_file.cpp" />
+    <ClCompile Include="..\CPP_sources\exported_func.cpp" />
+    <ClCompile Include="..\CPP_sources\file.cpp" />
+    <ClCompile Include="..\CPP_sources\helper.cpp" />
+    <ClCompile Include="..\CPP_sources\ingame_music.cpp" />
+    <ClCompile Include="..\CPP_sources\keyboard.cpp" />
+    <ClCompile Include="..\CPP_sources\library_func.cpp" />
+    <ClCompile Include="..\CPP_sources\main.cpp" />
+    <ClCompile Include="..\CPP_sources\mouse.cpp" />
+    <ClCompile Include="..\CPP_sources\options.cpp" />
+    <ClCompile Include="..\CPP_sources\palette.cpp" />
+    <ClCompile Include="..\CPP_sources\player.cpp" />
+    <ClCompile Include="..\CPP_sources\raw_file.cpp" />
+    <ClCompile Include="..\CPP_sources\render_position.cpp" />
+    <ClCompile Include="..\CPP_sources\resolutions.cpp" />
+    <ClCompile Include="..\CPP_sources\screenshot.cpp" />
+    <ClCompile Include="..\CPP_sources\screen_data.cpp" />
+    <ClCompile Include="..\CPP_sources\sdl_cursor.cpp" />
+    <ClCompile Include="..\CPP_sources\sdl_event.cpp" />
+    <ClCompile Include="..\CPP_sources\sdl_sound.cpp" />
+    <ClCompile Include="..\CPP_sources\sdl_texture.cpp" />
+    <ClCompile Include="..\CPP_sources\sdl_timer.cpp" />
+    <ClCompile Include="..\CPP_sources\sdl_window.cpp" />
+    <ClCompile Include="..\CPP_sources\tiles.cpp" />
+    <ClCompile Include="..\CPP_sources\timer.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
@@ -66,15 +122,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\SDL2_mixer\lib\x86;$(ProjectDir)..\SDL2\lib\x86;$(ProjectDir)..\libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <IntDir>$(SolutionDir)$(Configuration)\temp\</IntDir>
+    <SourcePath>$(ProjectDir)..\ASM_sources;$(ProjectDir)..\CPP_sources;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\SDL2_mixer\lib\x86;$(ProjectDir)..\SDL2\lib\x86;$(ProjectDir)..\libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <IntDir>$(SolutionDir)$(Configuration)\temp\</IntDir>
+    <SourcePath>$(ProjectDir)..\ASM_sources;$(ProjectDir)..\CPP_sources;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
