@@ -5,10 +5,8 @@
 // Here extern variables from bedlam.asm file    //
 ///////////////////////////////////////////////////
 
-extern "C" {
-int main_(int, const char **, const char **);
-void level_clock();
-}
+extern "C" int __stdcall game_core1();
+extern "C" void __stdcall level_clock();
 
 extern "C" volatile int32_t screen_x_pos;
 extern "C" volatile int32_t screen_y_pos;

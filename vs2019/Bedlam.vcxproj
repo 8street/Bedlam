@@ -25,6 +25,8 @@
     <None Include="..\ASM_includes\smackw32.inc" />
     <None Include="..\ASM_includes\user32.inc" />
     <None Include="..\ASM_includes\winmm.inc" />
+    <None Include="..\ASM_sources\bedlam.inc" />
+    <None Include="..\ASM_sources\bedlam_data.inc" />
     <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +143,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -157,6 +160,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>

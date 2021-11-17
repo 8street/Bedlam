@@ -36,8 +36,8 @@ int main(int argc, char *argv[])
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Problem", "Error init sound!", NULL);
     }
 
-    // Run bedlam 2 main function
-    return main_(argc, (const char**)argv, NULL);
+    // Run bedlam main function
+    return game_core1();
 }
 
 void free_win()
