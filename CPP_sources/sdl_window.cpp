@@ -64,7 +64,7 @@ int Window::init()
         window_flags = SDL_WINDOW_BORDERLESS | SDL_WINDOW_ALLOW_HIGHDPI | SDL_WINDOW_SHOWN;
     }
     m_window = SDL_CreateWindow(
-        "Bedlam 2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_window_width, m_window_height, window_flags);
+        "Bedlam", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, m_window_width, m_window_height, window_flags);
     if (!m_window)
     {
         std::cout << "ERROR: created window. " << SDL_GetError() << std::endl;

@@ -59,3 +59,4 @@ extern "C" void draw_map_and_game_screen();
 extern "C" void copy_screen_to_buffer(uint8_t *buffer_ptr);
 extern "C" void get_screen_buffer_ptr();
 extern "C" void correct_screen_pos();
+extern "C" void unlock_screen_surface();

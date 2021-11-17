@@ -25,6 +25,15 @@ void set_palette(uint8_t *pal_file)
     GAME_WINDOW.set_palette(pal_ptr, offset, num_entries);
 }
 
+// 0044AED4 Bedlam 1
+void set_palette_2(uint8_t *pal_ptr, int offset, int num_entries)
+{
+    if (pal_ptr && offset >= 0 && num_entries >= 0)
+    {
+        GAME_WINDOW.set_palette(pal_ptr, offset, num_entries); 
+    }
+}
+
 // 00425901 Bedlam 1
 void palette_animation()
 {

@@ -7,7 +7,7 @@ extrn fseek:proc
 extrn ftell:proc
 extrn fflush:proc
 
-;extrn printf:proc
+extrn printf:proc
 extrn puts:proc
 extrn putchar:proc
 extrn getcwd:proc
@@ -19,6 +19,7 @@ extrn exit:proc
 extrn dos_sleep:proc
 
 extrn set_palette:proc
+extrn set_palette_2:proc
 extrn swap_palette_with_animation:proc
 extrn wait_palette_animation:proc
 
@@ -31,6 +32,7 @@ extrn redraw_copy_buff_to_screen_and_unlock:proc
 extrn draw_map_and_game_screen:proc
 extrn copy_screen_to_buffer:proc
 extrn correct_screen_pos:proc
+extrn unlock_screen_surface:proc
 
 extrn show_cursor:proc
 extrn hide_cursor:proc

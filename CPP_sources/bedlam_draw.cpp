@@ -87,3 +87,8 @@ void correct_screen_pos()
     screen_x_pos += DISPLACE_SCREEN_X;
     screen_y_pos += DISPLACE_SCREEN_Y;
 }
+
+void unlock_screen_surface()
+{
+    GAME_WINDOW.unlock_screen_surface();
+}
