@@ -128,9 +128,6 @@
     <ClInclude Include="..\CPP_sources\palette.h">
       <Filter>CPP sources</Filter>
     </ClInclude>
-    <ClInclude Include="..\CPP_sources\player.h">
-      <Filter>CPP sources</Filter>
-    </ClInclude>
     <ClInclude Include="..\CPP_sources\raw_file.h">
       <Filter>CPP sources</Filter>
     </ClInclude>
@@ -203,9 +200,6 @@
       <Filter>CPP sources</Filter>
     </ClCompile>
     <ClCompile Include="..\CPP_sources\palette.cpp">
-      <Filter>CPP sources</Filter>
-    </ClCompile>
-    <ClCompile Include="..\CPP_sources\player.cpp">
       <Filter>CPP sources</Filter>
     </ClCompile>
     <ClCompile Include="..\CPP_sources\raw_file.cpp">

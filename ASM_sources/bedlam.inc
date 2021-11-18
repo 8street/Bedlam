@@ -30,7 +30,6 @@ extrn redraw:proc
 extrn unlock_surface_and_wait:proc
 extrn redraw_copy_buff_to_screen_and_unlock:proc
 extrn draw_map_and_game_screen:proc
-extrn copy_screen_to_buffer:proc
 extrn correct_screen_pos:proc
 extrn unlock_screen_surface:proc
 
@@ -81,7 +80,6 @@ extrn CURSOR_POS_RCLICK_X:dword
 extrn CURSOR_POS_RCLICK_Y:dword
 extrn MOUSE_CLICK:dword
 extrn MOUSE_BUTTONS_STATE1:dword
-extrn UPDATE_CURSOR_BY_TIMER:dword
 extrn WAITING_TIMER:dword
 extrn GAME_UPDATE_TIMER:dword
 extrn SIDEBAR_START_POS_X:dword
@@ -100,8 +98,6 @@ extrn KEY_6:dword
 extrn KEY_7:dword
 extrn KEY_P:dword
 extrn KEY_M:dword
-
-extrn ROBOT_MAX_HEALTH:dword
 
 ;==========================================================
 
