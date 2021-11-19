@@ -40,7 +40,7 @@ int Sound::init()
 
     m_num_simultaneously_playing_channels = 10;
     // Allocate check
-    int max_channels = 104 * m_num_simultaneously_playing_channels;
+    int max_channels = 156 * m_num_simultaneously_playing_channels;
     int num_channels = Mix_AllocateChannels(max_channels);
     int num_reserve_channels = Mix_ReserveChannels(max_channels);
     if (num_channels != max_channels || num_reserve_channels != max_channels)

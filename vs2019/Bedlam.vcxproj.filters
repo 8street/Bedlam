@@ -58,6 +58,7 @@
     <None Include="..\ASM_sources\bedlam.inc">
       <Filter>ASM sources</Filter>
     </None>
+    <None Include="..\.clang-format" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="..\ASM_sources\bedlam.asm">
