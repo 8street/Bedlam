@@ -180,6 +180,11 @@ int Sound::set_volume(int new_volume)
     return 0;
 }
 
+int Sound::is_stopped(int channel_index) const
+{
+    return !Mix_Playing(channel_index);
+}
+
 int Sound::get_raw_index(const std::string &path) const
 {
     auto search = m_filename_index_map.find(path);
@@ -199,7 +204,7 @@ int Sound::get_first_free_channel(int index) const
 {
     for (int i = index; i < index + m_num_simultaneously_playing_channels; i++)
     {
-        if (!Mix_Playing(i))
+        if (is_stopped(i))
         {
             return i;
         }
@@ -271,7 +276,17 @@ void stop_music()
     SOUND_SYSTEM.fade_stop(10);
 }
 
+void stop_sound(int channel_index)
+{
+    SOUND_SYSTEM.stop(channel_index);
+}
+
 void set_volume(int volume)
 {
     SOUND_SYSTEM.set_volume(volume);
+}
+
+int sound_is_stopped(int channel_index)
+{
+    return SOUND_SYSTEM.is_stopped(channel_index);
 }

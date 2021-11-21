@@ -63,6 +63,7 @@ Uint32 sdl_timer_callback(Uint32 interval, void *param)
     cursor_timer++;
     WAITING_TIMER++;
     GAME_UPDATE_TIMER++;
+    midi_callback();
     level_clock();
     mouse_update();
 
