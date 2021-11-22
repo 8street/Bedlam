@@ -59,6 +59,7 @@
     <ClInclude Include="..\CPP_sources\sdl_window.h" />
     <ClInclude Include="..\CPP_sources\tiles.h" />
     <ClInclude Include="..\CPP_sources\timer.h" />
+    <ClInclude Include="..\CPP_sources\wav.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CPP_sources\bedlam_draw.cpp" />
@@ -86,6 +87,7 @@
     <ClCompile Include="..\CPP_sources\sdl_window.cpp" />
     <ClCompile Include="..\CPP_sources\tiles.cpp" />
     <ClCompile Include="..\CPP_sources\timer.cpp" />
+    <ClCompile Include="..\CPP_sources\wav.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

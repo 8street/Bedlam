@@ -22,5 +22,5 @@ private:
     Mix_Chunk *m_raw_chunk = nullptr;
     int load_chunk();
     int destroy();
-    virtual int load_data();
+    virtual int load_raw_data();
 };

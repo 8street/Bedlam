@@ -6,8 +6,8 @@
 #include "helper.h"
 #include "sdl_sound.h"
 
-//#define MIX_EFFECTSMAXSPEED "MIX_EFFECTSMAXSPEED"
 #define MIX_MAX_BALANCE 255
+//#define MIX_CHANNELS 8;
 
 Sound SOUND_SYSTEM;
 
@@ -32,12 +32,12 @@ int Sound::init()
         ret_val |= -1;
     }
 
-    if (Mix_OpenAudio(11025, AUDIO_U8, 2, 16))
+    //if (Mix_OpenAudio(11025, AUDIO_U8, 2, 16))
+    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 256))
     {
         std::cout << "ERROR: Mix_OpenAudio. " << Mix_GetError() << std::endl;
         ret_val |= -1;
     }
-
     m_num_simultaneously_playing_channels = 10;
     // Allocate check
     int max_channels = 156 * m_num_simultaneously_playing_channels;

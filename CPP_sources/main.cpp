@@ -8,6 +8,9 @@
 #include "sdl_timer.h"
 #include "sdl_window.h"
 
+#include "wav.h"
+#include <SDL_mixer.h>
+
 int main(int argc, char *argv[])
 {
 #ifdef _DEBUG
@@ -34,6 +37,13 @@ int main(int argc, char *argv[])
     if (SOUND_SYSTEM.init())
     {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Problem", "Error init sound!", NULL);
+    }
+
+    WAV test_wave("SOUND/SPEECH/SPCH00A.RAW");
+    while (1)
+    {
+        Mix_PlayChannel(-1, test_wave.get_chunk(), 0);
+        SDL_Delay(3000);
     }
 
     // Run bedlam main function

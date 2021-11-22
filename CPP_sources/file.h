@@ -22,7 +22,7 @@ public:
     size_t get_size() const;
 
 private:
-    virtual int load_data();
+    virtual int load_raw_data();
     int set_path(const std::string &path);
 
 protected:

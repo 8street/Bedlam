@@ -69,7 +69,7 @@ int RAW_File::destroy()
     return 0;
 }
 
-int RAW_File::load_data()
+int RAW_File::load_raw_data()
 {
     std::ifstream file;
     file.open(get_full_path().c_str(), std::ios_base::in | std::ios_base::binary);
