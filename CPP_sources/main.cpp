@@ -39,13 +39,6 @@ int main(int argc, char *argv[])
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Problem", "Error init sound!", NULL);
     }
 
-    WAV test_wave("SOUND/SPEECH/SPCH00A.RAW");
-    while (1)
-    {
-        Mix_PlayChannel(-1, test_wave.get_chunk(), 0);
-        SDL_Delay(3000);
-    }
-
     // Run bedlam main function
     return game_core1();
 }

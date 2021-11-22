@@ -46,7 +46,6 @@
     <ClInclude Include="..\CPP_sources\mouse.h" />
     <ClInclude Include="..\CPP_sources\options.h" />
     <ClInclude Include="..\CPP_sources\palette.h" />
-    <ClInclude Include="..\CPP_sources\raw_file.h" />
     <ClInclude Include="..\CPP_sources\render_position.h" />
     <ClInclude Include="..\CPP_sources\resolutions.h" />
     <ClInclude Include="..\CPP_sources\screenshot.h" />
@@ -74,7 +73,6 @@
     <ClCompile Include="..\CPP_sources\mouse.cpp" />
     <ClCompile Include="..\CPP_sources\options.cpp" />
     <ClCompile Include="..\CPP_sources\palette.cpp" />
-    <ClCompile Include="..\CPP_sources\raw_file.cpp" />
     <ClCompile Include="..\CPP_sources\render_position.cpp" />
     <ClCompile Include="..\CPP_sources\resolutions.cpp" />
     <ClCompile Include="..\CPP_sources\screenshot.cpp" />

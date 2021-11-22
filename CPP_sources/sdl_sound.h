@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "raw_file.h"
+#include "wav.h"
 
 class Sound
 {
@@ -27,7 +27,7 @@ private:
     int get_first_free_channel(int index) const;
     int get_volume(int x, int y) const;
     int get_balance(int x, int y) const;
-    std::vector<RAW_File> m_raws;
+    std::vector<WAV> m_wavs;
     std::unordered_map<std::string, int> m_filename_index_map;
     int m_num_simultaneously_playing_channels = 0;
     int m_master_volume = 0;

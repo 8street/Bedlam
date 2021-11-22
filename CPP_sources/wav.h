@@ -6,7 +6,6 @@
 #include <SDL_mixer.h>
 
 #include "file.h"
-#include "raw_file.h"
 
 #define PCM_SIZE 16
 #define PCM 1
@@ -38,7 +37,6 @@ public:
     WAV(const uint8_t *const raw_ptr, size_t data_size, uint32_t samplerate = 11025, uint32_t bits_per_sample = 8,
         uint32_t num_channels = 1);
     WAV(const File &raw_file, uint32_t samplerate = 11025, uint32_t bits_per_sample = 8, uint32_t num_channels = 1);
-    WAV(const RAW_File &raw_file, uint32_t samplerate = 11025, uint32_t bits_per_sample = 8, uint32_t num_channels = 2);
     WAV(const std::string &path);
     ~WAV();
 

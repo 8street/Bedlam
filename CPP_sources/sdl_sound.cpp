@@ -6,8 +6,12 @@
 #include "helper.h"
 #include "sdl_sound.h"
 
+#ifdef _MSC_VER
+#    pragma warning(disable : 4005)
+#endif
+
 #define MIX_MAX_BALANCE 255
-//#define MIX_CHANNELS 8;
+#define MIX_CHANNELS 12;
 
 Sound SOUND_SYSTEM;
 
@@ -32,8 +36,7 @@ int Sound::init()
         ret_val |= -1;
     }
 
-    //if (Mix_OpenAudio(11025, AUDIO_U8, 2, 16))
-    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 256))
+    if (Mix_OpenAudio(44100, AUDIO_S16SYS, 2, 128))
     {
         std::cout << "ERROR: Mix_OpenAudio. " << Mix_GetError() << std::endl;
         ret_val |= -1;
@@ -75,12 +78,12 @@ int Sound::add_raw(const std::string &path)
         return get_raw_index(path);
     }
 
-    m_raws.push_back(RAW_File(path));
-    const int raw_index = get_last_raw_index();
-    m_filename_index_map.emplace(path, raw_index);
-    Mix_VolumeChunk(m_raws[raw_index].get_chunk(), MIX_MAX_VOLUME);
-    Mix_AllocateChannels(m_num_simultaneously_playing_channels * (raw_index + 1));
-    return raw_index;
+    m_wavs.push_back(File(path));
+    const int wav_index = get_last_raw_index();
+    m_filename_index_map.emplace(path, wav_index);
+    Mix_VolumeChunk(m_wavs[wav_index].get_chunk(), MIX_MAX_VOLUME);
+    Mix_AllocateChannels(m_num_simultaneously_playing_channels * (wav_index + 1));
+    return wav_index;
 }
 
 int Sound::play_raw(int index, int x, int y, bool loop)
@@ -121,13 +124,13 @@ int Sound::play_raw(int index, int x, int y, bool loop)
 
     int free_channel_index = get_first_free_channel(index);
 
-    ret_val |= Mix_Volume(free_channel_index, volume);
-    ret_val |= Mix_SetPanning(free_channel_index, (uint8_t)l_balance, (uint8_t)r_balance);
+    Mix_Volume(free_channel_index, volume);
+    ret_val |= !Mix_SetPanning(free_channel_index, static_cast<uint8_t>(l_balance), static_cast<uint8_t>(r_balance));
     if (loop)
     {
         palying_times = -1;
     }
-    ret_val |= Mix_PlayChannel(free_channel_index, m_raws[index].get_chunk(), palying_times);
+    Mix_PlayChannel(free_channel_index, m_wavs[index].get_chunk(), palying_times);
     return ret_val;
 }
 
@@ -197,7 +200,7 @@ int Sound::get_raw_index(const std::string &path) const
 
 int Sound::get_last_raw_index() const
 {
-    return static_cast<int>(m_raws.size()) - 1;
+    return static_cast<int>(m_wavs.size()) - 1;
 }
 
 int Sound::get_first_free_channel(int index) const
