@@ -8,9 +8,6 @@
 #include "sdl_timer.h"
 #include "sdl_window.h"
 
-#include "wav.h"
-#include <SDL_mixer.h>
-
 int main(int argc, char *argv[])
 {
 #ifdef _DEBUG

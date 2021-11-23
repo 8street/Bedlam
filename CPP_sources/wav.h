@@ -34,26 +34,24 @@ struct WAV_header
 class WAV
 {
 public:
+    WAV();
     WAV(const uint8_t *const raw_ptr, size_t data_size, uint32_t samplerate = 11025, uint32_t bits_per_sample = 8,
         uint32_t num_channels = 1);
-    WAV(const File &raw_file, uint32_t samplerate = 11025, uint32_t bits_per_sample = 8, uint32_t num_channels = 1);
+    WAV(const File &file, uint32_t samplerate = 11025, uint32_t bits_per_sample = 8, uint32_t num_channels = 1);
     WAV(const std::string &path);
     ~WAV();
 
+    int load_from_path(const std::string &path);
+    int load_from_mem(
+        const uint8_t *const raw_ptr, size_t data_size, uint32_t samplerate = 11025, uint32_t bits_per_sample = 8,
+        uint32_t num_channels = 1);
     const uint8_t *get_data() const;
     size_t get_size() const;
-    Mix_Chunk *get_chunk();
-    const Mix_Chunk *get_chunk() const;
 
 private:
     int fill_wav_header(
         WAV_header &header, size_t data_size, uint32_t samplerate, uint32_t bits_per_sample, uint32_t num_channels);
-    int load_raw_data(
-        const uint8_t *const raw_ptr, size_t data_size, uint32_t samplerate, uint32_t bits_per_sample, uint32_t num_channels);
     int load_wav_data(const uint8_t *const raw_ptr, size_t data_size);
-    int load_chunk();
-    int destroy_chunk();
 
     std::vector<uint8_t> m_wav_data;
-    Mix_Chunk *m_wav_chunk = nullptr;
 };

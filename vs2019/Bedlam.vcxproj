@@ -56,6 +56,7 @@
     <ClInclude Include="..\CPP_sources\sdl_texture.h" />
     <ClInclude Include="..\CPP_sources\sdl_timer.h" />
     <ClInclude Include="..\CPP_sources\sdl_window.h" />
+    <ClInclude Include="..\CPP_sources\sound_chunk.h" />
     <ClInclude Include="..\CPP_sources\tiles.h" />
     <ClInclude Include="..\CPP_sources\timer.h" />
     <ClInclude Include="..\CPP_sources\wav.h" />
@@ -83,6 +84,7 @@
     <ClCompile Include="..\CPP_sources\sdl_texture.cpp" />
     <ClCompile Include="..\CPP_sources\sdl_timer.cpp" />
     <ClCompile Include="..\CPP_sources\sdl_window.cpp" />
+    <ClCompile Include="..\CPP_sources\sound_chunk.cpp" />
     <ClCompile Include="..\CPP_sources\tiles.cpp" />
     <ClCompile Include="..\CPP_sources\timer.cpp" />
     <ClCompile Include="..\CPP_sources\wav.cpp" />

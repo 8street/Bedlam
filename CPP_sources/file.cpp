@@ -1,6 +1,6 @@
+#include <algorithm>
 #include <fstream>
 #include <iostream>
-#include <algorithm>
 
 #include "file.h"
 #include "helper.h"
@@ -13,7 +13,7 @@ File::File()
 File::File(const std::string &path)
     : m_file(path)
 {
-    load_raw_data();
+    load_data();
 }
 
 int File::load(const std::string &path)
@@ -34,7 +34,7 @@ int File::set_path(const std::string &path)
 
     if (std::filesystem::exists(m_file))
     {
-        retval = load_raw_data();
+        retval = load_data();
     }
     else
     {
@@ -65,7 +65,7 @@ std::string File::get_extension() const
     return m_file.extension().string();
 }
 
-int File::load_raw_data()
+int File::load_data()
 {
     std::ifstream file;
     file.open(get_full_path().c_str(), std::ios_base::in | std::ios_base::binary);

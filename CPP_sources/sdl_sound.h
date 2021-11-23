@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include "wav.h"
+#include "sound_chunk.h"
 
 class Sound
 {
@@ -22,12 +22,12 @@ public:
     int is_stopped(int channel_index) const;
 
 private:
-    int get_raw_index(const std::string &path) const;
-    int get_last_raw_index() const;
+    int get_chunk_index(const std::string &path) const;
+    int get_last_chunk_index() const;
     int get_first_free_channel(int index) const;
     int get_volume(int x, int y) const;
     int get_balance(int x, int y) const;
-    std::vector<WAV> m_wavs;
+    std::vector<Sound_chunk> m_chunks_arr;
     std::unordered_map<std::string, int> m_filename_index_map;
     int m_num_simultaneously_playing_channels = 0;
     int m_master_volume = 0;

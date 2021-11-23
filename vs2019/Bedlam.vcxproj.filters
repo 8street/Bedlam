@@ -141,6 +141,9 @@
     <ClInclude Include="..\CPP_sources\wav.h">
       <Filter>CPP sources</Filter>
     </ClInclude>
+    <ClInclude Include="..\CPP_sources\sound_chunk.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CPP_sources\sdl_cursor.cpp">
@@ -216,6 +219,9 @@
       <Filter>CPP sources</Filter>
     </ClCompile>
     <ClCompile Include="..\CPP_sources\wav.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\sound_chunk.cpp">
       <Filter>CPP sources</Filter>
     </ClCompile>
   </ItemGroup>
