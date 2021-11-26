@@ -31,6 +31,9 @@ Sound_chunk::Sound_chunk(const Sound_chunk &chunk)
         m_chunk->abuf = new uint8_t[m_chunk->alen]();
         std::copy(chunk.get_chunk()->abuf, chunk.get_chunk()->abuf + chunk.get_chunk()->alen, m_chunk->abuf);
         m_used_operator_new = true;
+        m_samplerate = chunk.m_samplerate;
+        m_format = chunk.m_format;
+        m_num_channels = chunk.m_num_channels;
     }
 }
 
@@ -57,6 +60,12 @@ int Sound_chunk::load_chunk(const WAV &wav_file)
     if (!m_chunk || !m_chunk->allocated)
     {
         std::cout << "Sound chunk error. Couldn't load data chunk. " << Mix_GetError() << std::endl;
+        return -1;
+    }
+    if (!Mix_QuerySpec(&m_samplerate, &m_format, &m_num_channels))
+    {
+        std::cout << "Sound chunk error. Couldn't query audio specs. ";
+        std::cout << "Audio not opened. " << Mix_GetError() << std::endl;
         return -1;
     }
     return 0;

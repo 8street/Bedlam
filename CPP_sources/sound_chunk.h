@@ -26,4 +26,7 @@ private:
     int destroy_chunk();
     Mix_Chunk *m_chunk = nullptr;
     bool m_used_operator_new = false;
+    int m_samplerate = 0;
+    int m_num_channels = 0;
+    uint16_t m_format = 0;
 };

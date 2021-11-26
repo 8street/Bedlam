@@ -56,6 +56,21 @@ size_t WAV::get_size() const
     return m_wav_data.size();
 }
 
+int WAV::get_samplerate() const
+{
+    return get_wav_header().sampleRate;
+}
+
+int WAV::get_num_channels() const
+{
+    return get_wav_header().numChannels;
+}
+
+int WAV::get_bits_per_sample() const
+{
+    return get_wav_header().bitsPerSample;
+}
+
 int WAV::fill_wav_header(
     WAV_header &header, size_t data_size, uint32_t samplerate, uint32_t bits_per_sample, uint32_t num_channels)
 {
@@ -104,4 +119,10 @@ int WAV::load_wav_data(const uint8_t *const raw_ptr, size_t data_size)
     m_wav_data.reserve(data_size);
     m_wav_data.insert(m_wav_data.end(), raw_ptr, raw_ptr + data_size);
     return 0;
+}
+
+const WAV_header &WAV::get_wav_header() const
+{
+    const WAV_header *const header_ptr = reinterpret_cast<const WAV_header *const>(m_wav_data.data());
+    return *header_ptr;
 }

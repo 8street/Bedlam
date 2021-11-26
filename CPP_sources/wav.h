@@ -47,11 +47,15 @@ public:
         uint32_t num_channels = 1);
     const uint8_t *get_data() const;
     size_t get_size() const;
+    int get_samplerate() const;
+    int get_num_channels() const;
+    int get_bits_per_sample() const;
 
 private:
     int fill_wav_header(
         WAV_header &header, size_t data_size, uint32_t samplerate, uint32_t bits_per_sample, uint32_t num_channels);
     int load_wav_data(const uint8_t *const raw_ptr, size_t data_size);
+    const WAV_header &get_wav_header() const;
 
     std::vector<uint8_t> m_wav_data;
 };
