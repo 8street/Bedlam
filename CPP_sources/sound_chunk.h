@@ -25,5 +25,5 @@ public:
 private:
     int destroy_chunk();
     Mix_Chunk *m_chunk = nullptr;
-    bool m_used_new_operator = false;
+    bool m_used_operator_new = false;
 };

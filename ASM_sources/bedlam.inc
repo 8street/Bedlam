@@ -36,14 +36,15 @@ extrn unlock_screen_surface:proc
 extrn show_cursor:proc
 extrn hide_cursor:proc
 
-extrn load_raw:proc
-extrn load_music:proc
 extrn play_sound:proc
 extrn play_music:proc
 extrn stop_music:proc
 extrn stop_sound:proc
 extrn set_volume:proc
 extrn sound_is_stopped:proc
+extrn load_raw_to_soundbufer:proc
+extrn free_unused_sound_buffers:proc
+extrn play_midi:proc
 
 extrn play_wav_music:proc
 extrn stop_wav_music:proc

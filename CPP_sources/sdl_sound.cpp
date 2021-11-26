@@ -42,11 +42,13 @@ int Sound::init()
         std::cout << "ERROR: Mix_OpenAudio. " << Mix_GetError() << std::endl;
         ret_val |= -1;
     }
-    m_num_simultaneously_playing_channels = MIX_CHANNELS;
+    m_num_simultaneously_playing_channels = 6;
     // Allocate check
-    int max_channels = 156 * m_num_simultaneously_playing_channels;
-    int num_channels = Mix_AllocateChannels(max_channels);
-    int num_reserve_channels = Mix_ReserveChannels(max_channels);
+    const int num_sound_files = 160;
+    m_chunks_arr.reserve(num_sound_files);
+    const int max_channels = get_channel_index(num_sound_files);
+    const int num_channels = Mix_AllocateChannels(max_channels);
+    const int num_reserve_channels = Mix_ReserveChannels(max_channels);
     if (num_channels != max_channels || num_reserve_channels != max_channels)
     {
         std::cout << "ERROR: allocate channels. Current channels number is " << num_channels << std::endl;
@@ -67,39 +69,31 @@ int Sound::init()
     return ret_val;
 }
 
-int Sound::add_raw(const std::string &path)
+int Sound::add_raw(uint8_t *raw_ptr, int filesize, int samplerate, int bitrate, int num_channels)
 {
     if (!m_sound_was_initted)
     {
         return -1;
     }
-    // if we already have this file, just return file index
-    if (get_chunk_index(path) >= 0)
-    {
-        return get_chunk_index(path);
-    }
-    m_chunks_arr.emplace_back(path);
+    m_chunks_arr.push_back(Sound_chunk(WAV(raw_ptr, filesize, samplerate, bitrate, num_channels)));
     SDL_events();
     const int chunk_index = get_last_chunk_index();
-    m_filename_index_map.emplace(path, chunk_index);
     Mix_VolumeChunk(m_chunks_arr[chunk_index].get_chunk(), MIX_MAX_VOLUME);
-    Mix_AllocateChannels(m_num_simultaneously_playing_channels * (chunk_index + 1));
-    return chunk_index;
+    return get_channel_index(chunk_index);
 }
 
-int Sound::play_raw(int index, int x, int y, bool loop)
+int Sound::play_sound(int channel_index, int x, int y, bool loop)
 {
     if (!m_sound_was_initted)
     {
         return -1;
     }
-    int ret_val = 0;
     int balance = 0;
     int l_balance = 0;
     int r_balance = 0;
     int volume = 0;
     int palying_times = 0;
-
+    int chunk_index = get_chunk_index(channel_index);
     if (x == -1 && y == -1)
     {
         volume = MIX_MAX_VOLUME;
@@ -123,16 +117,46 @@ int Sound::play_raw(int index, int x, int y, bool loop)
     }
     volume = volume * m_master_volume / 100;
 
-    int free_channel_index = get_first_free_channel(index);
+    int free_channel_index = get_first_free_channel(chunk_index);
 
     Mix_Volume(free_channel_index, volume);
-    ret_val |= !Mix_SetPanning(free_channel_index, static_cast<uint8_t>(l_balance), static_cast<uint8_t>(r_balance));
+    Mix_SetPanning(free_channel_index, static_cast<uint8_t>(l_balance), static_cast<uint8_t>(r_balance));
     if (loop)
     {
         palying_times = -1;
     }
-    Mix_PlayChannel(free_channel_index, m_chunks_arr[index].get_chunk(), palying_times);
-    return ret_val;
+    Mix_PlayChannel(free_channel_index, m_chunks_arr[chunk_index].get_chunk(), palying_times);
+    return free_channel_index;
+}
+
+int Sound::play_raw(int channel_index, int position, int samplerate, int volume, int balance)
+{
+    if (!m_sound_was_initted)
+    {
+        return -1;
+    }
+    int l_balance = 0;
+    int r_balance = 0;
+    int palying_times = 0;
+    int chunk_index = get_chunk_index(channel_index);
+
+    volume = volume * m_master_volume / 100;
+    if (balance > 0)
+    {
+        l_balance = balance - MIX_MAX_BALANCE;
+        r_balance = MIX_MAX_BALANCE;
+    }
+    else
+    {
+        l_balance = MIX_MAX_BALANCE;
+        r_balance = balance + MIX_MAX_BALANCE;
+    }
+
+    int free_channel_index = get_first_free_channel(chunk_index);
+    Mix_Volume(free_channel_index, volume);
+    Mix_SetPanning(free_channel_index, static_cast<uint8_t>(l_balance), static_cast<uint8_t>(r_balance));
+    Mix_PlayChannel(free_channel_index, m_chunks_arr[chunk_index].get_chunk(), palying_times);
+    return free_channel_index;
 }
 
 int Sound::stop()
@@ -186,7 +210,23 @@ int Sound::set_volume(int new_volume)
 
 int Sound::is_stopped(int channel_index) const
 {
+    if (!m_sound_was_initted)
+    {
+        return 1;
+    }
     return !Mix_Playing(channel_index);
+}
+
+int Sound::free_unused_chunks(int new_channels_count)
+{
+    const int new_chunks_count = get_chunk_index(new_channels_count);
+    if (new_chunks_count > get_last_chunk_index())
+    {
+        return get_channel_index(get_last_chunk_index());
+    }
+    stop();
+    m_chunks_arr.resize(new_chunks_count + 1);
+    return new_channels_count;
 }
 
 int Sound::get_chunk_index(const std::string &path) const
@@ -204,17 +244,18 @@ int Sound::get_last_chunk_index() const
     return static_cast<int>(m_chunks_arr.size()) - 1;
 }
 
-int Sound::get_first_free_channel(int index) const
+int Sound::get_first_free_channel(int chunk_index) const
 {
-    for (int i = index; i < index + m_num_simultaneously_playing_channels; i++)
+    const int channel_index = get_channel_index(chunk_index);
+    for (int current_channel = channel_index; current_channel < channel_index + m_num_simultaneously_playing_channels; current_channel++)
     {
-        if (is_stopped(i))
+        if (is_stopped(current_channel))
         {
-            return i;
+            return current_channel;
         }
     }
-    Mix_HaltChannel(index);
-    return index;
+    Mix_HaltChannel(channel_index);
+    return channel_index;
 }
 
 int Sound::get_volume(int x, int y) const
@@ -253,26 +294,26 @@ int Sound::get_balance(int x, int y) const
     return balance;
 }
 
+int Sound::get_channel_index(int chunk_index) const
+{
+    return chunk_index * m_num_simultaneously_playing_channels;
+}
+
+int Sound::get_chunk_index(int channel_index) const
+{
+    return channel_index / m_num_simultaneously_playing_channels;
+}
+
 //////// Function calls from bedlam2.asm ///////////
 
-int load_raw(const char *filename)
+int play_sound(int channel_index, int x, int y, int a5)
 {
-    return SOUND_SYSTEM.add_raw(filename);
+    return SOUND_SYSTEM.play_sound(channel_index, x, y);
 }
 
-int load_music(const char *filename)
+int play_music(int channel_index, int x, int y, int flag)
 {
-    return SOUND_SYSTEM.add_raw(filename);
-}
-
-int play_sound(int raw_index, int x, int y, int a5)
-{
-    return SOUND_SYSTEM.play_raw(raw_index, x, y);
-}
-
-int play_music(int raw_index, int x, int y, int flag)
-{
-    return SOUND_SYSTEM.play_raw(raw_index, x, y, true);
+    return SOUND_SYSTEM.play_sound(channel_index, x, y, true);
 }
 
 void stop_music()
@@ -293,4 +334,22 @@ void set_volume(int volume)
 int sound_is_stopped(int channel_index)
 {
     return SOUND_SYSTEM.is_stopped(channel_index);
+}
+
+int load_raw_to_soundbufer(uint8_t *raw_ptr, int filesize, int samplerate, int bitrate, int num_channels)
+{
+    return SOUND_SYSTEM.add_raw(raw_ptr, filesize, samplerate, bitrate, num_channels);
+}
+
+int free_unused_sound_buffers(int new_buffer_count)
+{
+    return SOUND_SYSTEM.free_unused_chunks(new_buffer_count);
+}
+
+int play_midi(int channel_index, int position, int samplerate, int volume, int balance)
+{
+    samplerate = samplerate * 44100ll / 0x10000ll;
+    volume = volume * MIX_MAX_VOLUME / 0x8000;
+    balance = balance * MIX_MAX_BALANCE / 0x8000;
+    return SOUND_SYSTEM.play_raw(channel_index, position, samplerate, volume, balance);
 }

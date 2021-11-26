@@ -30,7 +30,7 @@ Sound_chunk::Sound_chunk(const Sound_chunk &chunk)
         m_chunk->alen = chunk.get_chunk()->alen;
         m_chunk->abuf = new uint8_t[m_chunk->alen]();
         std::copy(chunk.get_chunk()->abuf, chunk.get_chunk()->abuf + chunk.get_chunk()->alen, m_chunk->abuf);
-        m_used_new_operator = true;
+        m_used_operator_new = true;
     }
 }
 
@@ -45,18 +45,18 @@ int Sound_chunk::load_chunk(const WAV &wav_file)
     SDL_RWops *io = SDL_RWFromConstMem(wav_file.get_data(), wav_file.get_size());
     if (!io)
     {
-        std::cout << "WAV error. Couldn't load data to SDL_RWops. " << SDL_GetError() << std::endl;
+        std::cout << "Sound chunk error. Couldn't load data to SDL_RWops. " << SDL_GetError() << std::endl;
         return -1;
     }
     m_chunk = Mix_LoadWAV_RW(io, false);
-    m_used_new_operator = false;
+    m_used_operator_new = false;
     if (SDL_RWclose(io))
     {
-        std::cout << "WAV error. Couldn't close SDL_RWops. " << SDL_GetError() << std::endl;
+        std::cout << "Sound chunk error. Couldn't close SDL_RWops. " << SDL_GetError() << std::endl;
     }
     if (!m_chunk || !m_chunk->allocated)
     {
-        std::cout << "WAV error. Couldn't load data chunk. " << Mix_GetError() << std::endl;
+        std::cout << "Sound chunk error. Couldn't load data chunk. " << Mix_GetError() << std::endl;
         return -1;
     }
     return 0;
@@ -83,23 +83,28 @@ bool Sound_chunk::is_allocated() const
 
 uint32_t Sound_chunk::get_buf_size() const
 {
+    if (!m_chunk)
+    {
+        return 0U;
+    }
     return m_chunk->alen;
 }
 
 int Sound_chunk::destroy_chunk()
 {
-    if (m_chunk)
+    if (!m_chunk)
     {
-        if (m_used_new_operator)
-        {
-            delete[] m_chunk->abuf;
-            delete m_chunk;
-        }
-        else
-        {
-            Mix_FreeChunk(m_chunk);
-        }
-        m_chunk = nullptr;
+        return 0;
     }
+    if (m_used_operator_new)
+    {
+        delete[] m_chunk->abuf;
+        delete m_chunk;
+    }
+    else
+    {
+        Mix_FreeChunk(m_chunk);
+    }
+    m_chunk = nullptr;
     return 0;
 }
