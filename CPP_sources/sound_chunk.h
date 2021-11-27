@@ -21,6 +21,7 @@ public:
     const Mix_Chunk *get_chunk() const;
     bool is_allocated() const;
     uint32_t get_buf_size() const;
+    int resample(int new_samplerate);
 
 private:
     int destroy_chunk();
