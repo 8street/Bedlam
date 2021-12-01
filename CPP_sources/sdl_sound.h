@@ -51,4 +51,4 @@ extern "C" void set_volume(int volume);
 extern "C" int sound_is_stopped(int channel_index);
 extern "C" int load_raw_to_soundbufer(uint8_t *raw_ptr, int filesize, int samplerate, int bitrate, int num_channels);
 extern "C" int free_unused_sound_buffers(int new_buffer_count);
-extern "C" int play_midi(int channel_index, int position, int samplerate, int volume, int balance);
+extern "C" int play_sound2(int channel_index, int position, int samplerate, int volume, int balance);

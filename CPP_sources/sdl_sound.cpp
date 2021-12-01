@@ -7,11 +7,9 @@
 #include "sdl_event.h"
 #include "sdl_sound.h"
 
-#ifdef _MSC_VER
-#    pragma warning(disable : 4005)
-#endif
-
 #define MIX_MAX_BALANCE 255
+
+#undef MIX_CHANNELS
 #define MIX_CHANNELS 10;
 
 Sound SOUND_SYSTEM;
@@ -346,7 +344,7 @@ int free_unused_sound_buffers(int new_buffer_count)
     return SOUND_SYSTEM.free_unused_chunks(new_buffer_count);
 }
 
-int play_midi(int channel_index, int position, int samplerate, int volume, int balance)
+int play_sound2(int channel_index, int position, int samplerate, int volume, int balance)
 {
     samplerate = samplerate * 44100ll / 0x10000ll;
     volume = volume * MIX_MAX_VOLUME / 0x8000;

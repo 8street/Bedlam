@@ -44,7 +44,7 @@ extrn set_volume:proc
 extrn sound_is_stopped:proc
 extrn load_raw_to_soundbufer:proc
 extrn free_unused_sound_buffers:proc
-extrn play_midi:proc
+extrn play_sound2:proc
 
 extrn play_wav_music:proc
 extrn stop_wav_music:proc
