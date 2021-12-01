@@ -43,4 +43,7 @@ int main(int argc, char *argv[])
 void free_win()
 {
     // Place all destroy and deinits here
+
+    // Bedlam free from ASM
+    free_mem();
 }

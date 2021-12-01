@@ -8,6 +8,7 @@
 extern "C" int __stdcall game_core1();
 extern "C" void __stdcall level_clock();
 extern "C" void __stdcall midi_callback();
+extern "C" void __stdcall free_mem();
 
 extern "C" volatile int32_t screen_x_pos;
 extern "C" volatile int32_t screen_y_pos;
