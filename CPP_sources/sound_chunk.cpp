@@ -99,6 +99,51 @@ uint32_t Sound_chunk::get_buf_size() const
     return m_chunk->alen;
 }
 
+int Sound_chunk::resample(int new_samplerate)
+{
+    if (new_samplerate == m_samplerate)
+    {
+        return 0;
+    }
+    if (new_samplerate > 384000 || new_samplerate <= 0 || !is_allocated())
+    {
+        return -1;
+    }
+
+    //new_samplerate = 2 * abs(44000 - new_samplerate) + new_samplerate;
+    const int volume = m_chunk->volume;
+
+    SDL_AudioCVT cvt;
+    if(SDL_BuildAudioCVT(
+        &cvt, m_format, static_cast<uint8_t>(m_num_channels), m_samplerate, m_format, static_cast<uint8_t>(m_num_channels),
+        new_samplerate) == -1)
+    {
+        std::cout << "Resampler error. SDL_BuildAudioCVT. " << SDL_GetError();
+    }
+    cvt.len = m_chunk->alen;
+    cvt.buf = new uint8_t[cvt.len * cvt.len_mult];
+    std::copy(m_chunk->abuf, m_chunk->abuf + m_chunk->alen, cvt.buf);
+    if(SDL_ConvertAudio(&cvt))
+    {
+        std::cout << "Resampler error. SDL_ConvertAudio. " << SDL_GetError();
+    }
+
+    destroy_chunk();
+    m_chunk = new Mix_Chunk();
+    m_chunk->alen = cvt.len_cvt;
+    m_chunk->volume = volume;
+    m_chunk->abuf = new uint8_t[m_chunk->alen];
+    m_chunk->allocated = 1;
+    std::copy(cvt.buf, cvt.buf + m_chunk->alen, m_chunk->abuf);
+    m_used_operator_new = true;
+    m_samplerate = new_samplerate;
+    //m_format = m_format;
+    //m_num_channels = m_num_channels;
+
+    delete[] cvt.buf;
+    return 0;
+}
+
 int Sound_chunk::destroy_chunk()
 {
     if (!m_chunk)

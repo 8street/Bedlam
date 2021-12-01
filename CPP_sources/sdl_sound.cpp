@@ -149,7 +149,7 @@ int Sound::play_raw(int channel_index, int position, int samplerate, int volume,
         l_balance = MIX_MAX_BALANCE;
         r_balance = balance + MIX_MAX_BALANCE;
     }
-
+    m_chunks_arr[chunk_index].resample(samplerate);
     int free_channel_index = get_first_free_channel(chunk_index);
     Mix_Volume(free_channel_index, volume);
     Mix_SetPanning(free_channel_index, static_cast<uint8_t>(l_balance), static_cast<uint8_t>(r_balance));
