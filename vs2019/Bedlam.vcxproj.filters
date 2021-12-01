@@ -34,19 +34,7 @@
     <None Include="..\ASM_includes\dsound.inc">
       <Filter>ASM includes</Filter>
     </None>
-    <None Include="..\ASM_includes\gdi32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\kernel32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
     <None Include="..\ASM_includes\smackw32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\user32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\winmm.inc">
       <Filter>ASM includes</Filter>
     </None>
     <None Include="..\ASM_includes\advapi32.inc">

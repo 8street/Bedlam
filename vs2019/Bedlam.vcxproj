@@ -21,11 +21,7 @@
     <None Include="..\ASM_includes\ddraw.inc" />
     <None Include="..\ASM_includes\dplay.inc" />
     <None Include="..\ASM_includes\dsound.inc" />
-    <None Include="..\ASM_includes\gdi32.inc" />
-    <None Include="..\ASM_includes\kernel32.inc" />
     <None Include="..\ASM_includes\smackw32.inc" />
-    <None Include="..\ASM_includes\user32.inc" />
-    <None Include="..\ASM_includes\winmm.inc" />
     <None Include="..\ASM_sources\bedlam.inc" />
     <None Include="..\ASM_sources\bedlam_data.inc" />
     <None Include="..\README.md" />
