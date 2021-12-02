@@ -99,3 +99,8 @@ void wait_palette_animation(int target_time)
         SDL_events();
     }
 }
+
+uint8_t *get_RGB_palette_ptr()
+{
+    return GAME_WINDOW.get_RGB_palette_ptr();
+}

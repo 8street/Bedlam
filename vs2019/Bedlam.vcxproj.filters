@@ -25,9 +25,6 @@
   <ItemGroup>
     <None Include="..\README.md" />
     <None Include="..\.gitignore" />
-    <None Include="..\ASM_includes\ddraw.inc">
-      <Filter>ASM includes</Filter>
-    </None>
     <None Include="..\ASM_includes\dplay.inc">
       <Filter>ASM includes</Filter>
     </None>

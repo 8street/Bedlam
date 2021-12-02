@@ -23,6 +23,7 @@ extrn set_palette:proc
 extrn set_palette_2:proc
 extrn swap_palette_with_animation:proc
 extrn wait_palette_animation:proc
+extrn get_RGB_palette_ptr:proc
 
 extrn get_screen_buffer_ptr:proc
 extrn clear_screen:proc

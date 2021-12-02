@@ -18,7 +18,6 @@
     <None Include="..\.clang-format" />
     <None Include="..\.gitignore" />
     <None Include="..\ASM_includes\advapi32.inc" />
-    <None Include="..\ASM_includes\ddraw.inc" />
     <None Include="..\ASM_includes\dplay.inc" />
     <None Include="..\ASM_includes\dsound.inc" />
     <None Include="..\ASM_includes\smackw32.inc" />
