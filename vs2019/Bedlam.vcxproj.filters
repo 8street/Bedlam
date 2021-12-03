@@ -18,19 +18,10 @@
     <Library Include="..\libs\smackw32.lib">
       <Filter>Libs</Filter>
     </Library>
-    <Library Include="..\libs\dplay.lib">
-      <Filter>Libs</Filter>
-    </Library>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
     <None Include="..\.gitignore" />
-    <None Include="..\ASM_includes\dplay.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\dsound.inc">
-      <Filter>ASM includes</Filter>
-    </None>
     <None Include="..\ASM_includes\smackw32.inc">
       <Filter>ASM includes</Filter>
     </None>
