@@ -40,6 +40,7 @@
     <ClInclude Include="..\CPP_sources\palette.h" />
     <ClInclude Include="..\CPP_sources\render_position.h" />
     <ClInclude Include="..\CPP_sources\resolutions.h" />
+    <ClInclude Include="..\CPP_sources\save.h" />
     <ClInclude Include="..\CPP_sources\screenshot.h" />
     <ClInclude Include="..\CPP_sources\screen_data.h" />
     <ClInclude Include="..\CPP_sources\sdl_cursor.h" />
@@ -68,6 +69,7 @@
     <ClCompile Include="..\CPP_sources\palette.cpp" />
     <ClCompile Include="..\CPP_sources\render_position.cpp" />
     <ClCompile Include="..\CPP_sources\resolutions.cpp" />
+    <ClCompile Include="..\CPP_sources\save.cpp" />
     <ClCompile Include="..\CPP_sources\screenshot.cpp" />
     <ClCompile Include="..\CPP_sources\screen_data.cpp" />
     <ClCompile Include="..\CPP_sources\sdl_cursor.cpp" />

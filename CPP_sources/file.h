@@ -10,8 +10,11 @@ class File
 public:
     File();
     File(const std::string &path);
+    File(const std::string &path, const std::vector<uint8_t> &data);
 
+    int save(const std::string &path, const std::vector<uint8_t> &data);
     int load(const std::string &path);
+    static bool exist(const std::string &path);
     const uint8_t *get_ptr() const;
     uint8_t *get_ptr();
     std::string get_full_path() const;
@@ -22,10 +25,8 @@ public:
     size_t get_size() const;
 
 private:
-    int load_data();
-    int set_path(const std::string &path);
-
-    std::filesystem::path m_file;
+    int load_from_disk();
+    int save_to_disk();
+    std::filesystem::path m_path;
     std::vector<uint8_t> m_data;
-    size_t m_file_size;
 };
