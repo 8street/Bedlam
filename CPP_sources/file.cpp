@@ -29,7 +29,6 @@ File::File(const std::string &path, const uint8_t *data, size_t size)
     save_to_disk();
 }
 
-
 int File::save(const std::string &path, const std::vector<uint8_t> &data)
 {
     m_path = path;
@@ -46,12 +45,12 @@ int File::load(const std::string &path)
         return 0;
     }
     m_path = path;
-    
+
     return load_from_disk();
 }
 
 bool File::exist(const std::string &path)
-{ 
+{
     return std::filesystem::exists(path);
 }
 

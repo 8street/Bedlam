@@ -61,4 +61,4 @@ extern "C" int32_t midi_is_enable();
 extern "C" int32_t cd_audio_is_enable();
 extern "C" int32_t get_saved_master_volume();
 
-extern "C" void save_options(int32_t volume, char* player_name);
+extern "C" void save_options(int32_t volume, char *player_name);

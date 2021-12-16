@@ -68,6 +68,13 @@ extrn cd_audio_is_enable:proc
 extrn get_saved_master_volume:proc
 extrn save_options:proc
 
+extrn get_saves:proc
+extrn saves_to_disk:proc
+extrn get_hiscores:proc
+extrn hiscores_to_disk:proc
+extrn saves_exist:proc
+extrn hiscores_exist:proc
+
 ;==========================================================
 
 extrn SCREEN_BUFFER_PTR:dword
