@@ -25,9 +25,6 @@
     <None Include="..\ASM_includes\smackw32.inc">
       <Filter>ASM includes</Filter>
     </None>
-    <None Include="..\ASM_includes\advapi32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
     <None Include="..\ASM_sources\bedlam_data.inc">
       <Filter>ASM sources</Filter>
     </None>
