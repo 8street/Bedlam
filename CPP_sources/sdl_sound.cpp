@@ -4,6 +4,7 @@
 #include "bedlam.h"
 #include "bedlam_draw.h"
 #include "helper.h"
+#include "options.h"
 #include "sdl_event.h"
 #include "sdl_sound.h"
 
@@ -53,7 +54,7 @@ int Sound::init()
         ret_val |= -1;
     }
 
-    m_master_volume = 100;
+    m_master_volume = GAME_OPTIONS.get_volume();
     if (Mix_Volume(-1, MIX_MAX_VOLUME) != MIX_MAX_VOLUME)
     {
         ret_val |= -1;

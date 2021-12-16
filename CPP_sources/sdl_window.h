@@ -59,7 +59,6 @@ private:
     Screen_data m_sidebar;
 
     Tiles m_tiles;
-    Options m_options;
 
     Render_position m_menu_pos;
     Render_position m_game_pos;

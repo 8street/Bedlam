@@ -55,6 +55,21 @@ extrn free_win:proc
 
 extrn SDL_events:proc
 
+extrn sound_is_enable:proc
+extrn speechs_is_enable:proc
+extrn cinematics_is_enable:proc
+extrn actionpan_is_enable:proc
+extrn get_language:proc
+extrn get_misc:proc
+extrn get_installdrive:proc
+extrn get_playername:proc
+extrn midi_is_enable:proc
+extrn cd_audio_is_enable:proc
+extrn get_saved_master_volume:proc
+extrn save_options:proc
+
+;==========================================================
+
 extrn SCREEN_BUFFER_PTR:dword
 extrn SCREEN_SURFACE_WIDTH:dword
 extrn SCREEN_SURFACE_HEIGHT:dword
