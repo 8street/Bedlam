@@ -22,6 +22,14 @@ File::File(const std::string &path, const std::vector<uint8_t> &data)
     save(path, data);
 }
 
+File::File(const std::string &path, const uint8_t *data, size_t size)
+{
+    m_path = path;
+    m_data.insert(m_data.end(), data, data + size);
+    save_to_disk();
+}
+
+
 int File::save(const std::string &path, const std::vector<uint8_t> &data)
 {
     m_path = path;

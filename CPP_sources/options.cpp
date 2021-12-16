@@ -134,12 +134,9 @@ int Options::create_default_options_bdl()
 
 int Options::save_options_to_file()
 {
-    std::vector<uint8_t> file_data;
     const uint8_t *data_begin = reinterpret_cast<uint8_t *>(&m_options_data);
-    const uint8_t *data_end = data_begin + sizeof(m_options_data);
-    file_data.insert(file_data.end(), data_begin, data_end);
-    File options_bdl;
-    return options_bdl.save(m_options_bdl_path, file_data);
+    File options_bdl(m_options_bdl_path, data_begin, sizeof(m_options_data));
+    return 0;
 }
 
 int Options::save_options(int32_t volume, char *player_name)

@@ -11,6 +11,7 @@ public:
     File();
     File(const std::string &path);
     File(const std::string &path, const std::vector<uint8_t> &data);
+    File(const std::string &path, const uint8_t *data, size_t size);
 
     int save(const std::string &path, const std::vector<uint8_t> &data);
     int load(const std::string &path);
