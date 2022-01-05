@@ -2,6 +2,7 @@
 
 #include "bedlam.h"
 #include "bedlam_draw.h"
+#include "options.h"
 #include "sdl_event.h"
 #include "sdl_window.h"
 #include "timer.h"
@@ -48,9 +49,9 @@ int Window::init()
     const int monitor_height = DM.h;
 
 #ifdef _DEBUG
-    const Resolution_settings &resolution_settings = m_options.get_resolution_settings(Resolution(640, 480));
+    const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(Resolution(640, 480));
 #else
-    const Resolution_settings &resolution_settings = m_options.get_resolution_settings(
+    const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(
         Resolution(monitor_width, monitor_height));
 #endif
     m_game_width = resolution_settings.m_resolution.get_width();

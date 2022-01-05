@@ -11,15 +11,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\libs\dplay.lib" />
     <Library Include="..\libs\smackw32.lib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\.clang-format" />
     <None Include="..\.gitignore" />
-    <None Include="..\ASM_includes\advapi32.inc" />
-    <None Include="..\ASM_includes\dplay.inc" />
-    <None Include="..\ASM_includes\dsound.inc" />
     <None Include="..\ASM_includes\smackw32.inc" />
     <None Include="..\ASM_sources\bedlam.inc" />
     <None Include="..\ASM_sources\bedlam_data.inc" />
@@ -43,6 +39,7 @@
     <ClInclude Include="..\CPP_sources\palette.h" />
     <ClInclude Include="..\CPP_sources\render_position.h" />
     <ClInclude Include="..\CPP_sources\resolutions.h" />
+    <ClInclude Include="..\CPP_sources\save.h" />
     <ClInclude Include="..\CPP_sources\screenshot.h" />
     <ClInclude Include="..\CPP_sources\screen_data.h" />
     <ClInclude Include="..\CPP_sources\sdl_cursor.h" />
@@ -71,6 +68,7 @@
     <ClCompile Include="..\CPP_sources\palette.cpp" />
     <ClCompile Include="..\CPP_sources\render_position.cpp" />
     <ClCompile Include="..\CPP_sources\resolutions.cpp" />
+    <ClCompile Include="..\CPP_sources\save.cpp" />
     <ClCompile Include="..\CPP_sources\screenshot.cpp" />
     <ClCompile Include="..\CPP_sources\screen_data.cpp" />
     <ClCompile Include="..\CPP_sources\sdl_cursor.cpp" />
@@ -145,7 +143,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>legacy_stdio_definitions.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;smackw32.lib;winmm.lib;dplay.lib;dsound.lib;ddraw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;smackw32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -165,7 +163,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>legacy_stdio_definitions.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;smackw32.lib;winmm.lib;dplay.lib;dsound.lib;ddraw.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;smackw32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>

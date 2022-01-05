@@ -18,23 +18,11 @@
     <Library Include="..\libs\smackw32.lib">
       <Filter>Libs</Filter>
     </Library>
-    <Library Include="..\libs\dplay.lib">
-      <Filter>Libs</Filter>
-    </Library>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
     <None Include="..\.gitignore" />
-    <None Include="..\ASM_includes\dplay.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\dsound.inc">
-      <Filter>ASM includes</Filter>
-    </None>
     <None Include="..\ASM_includes\smackw32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\advapi32.inc">
       <Filter>ASM includes</Filter>
     </None>
     <None Include="..\ASM_sources\bedlam_data.inc">
@@ -129,6 +117,9 @@
     <ClInclude Include="..\CPP_sources\sound_chunk.h">
       <Filter>CPP sources</Filter>
     </ClInclude>
+    <ClInclude Include="..\CPP_sources\save.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CPP_sources\sdl_cursor.cpp">
@@ -207,6 +198,9 @@
       <Filter>CPP sources</Filter>
     </ClCompile>
     <ClCompile Include="..\CPP_sources\sound_chunk.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\save.cpp">
       <Filter>CPP sources</Filter>
     </ClCompile>
   </ItemGroup>

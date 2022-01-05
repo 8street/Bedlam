@@ -16,6 +16,13 @@ int main(int argc, char *argv[])
     atexit([] { system("PAUSE"); });
 #endif
 
+    if (!File::exist("GAMEGFX/GAMEPAL.PAL") || !File::exist("EDITOR/ZONEA/MISSIONA.BIN"))
+    {
+        const char error_str[] = "Seems some game files are missing.\nYou need original Bedlam game (DOS or Win "
+                                 "version).\nPlace executable file in your Bedlam game folder.";
+        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Problem", error_str, NULL);
+        return 404;
+    }
     if (GAME_WINDOW.init())
     {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Problem", "Error init video!", NULL);
