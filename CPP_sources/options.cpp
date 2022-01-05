@@ -162,7 +162,6 @@ int32_t Options::get_system_language() const
         std::cout << "ERROR: Couldn't read preffered locales. " << SDL_GetError() << std::endl;
         return language;
     }
-    int i = 0;
     while (locales->language)
     {
         if (!_stricmp(locales->language, "en"))
