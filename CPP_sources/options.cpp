@@ -156,32 +156,48 @@ int32_t Options::get_system_language() const
     // 5 - dutch
     int32_t language = 0;
     SDL_Locale *locales = SDL_GetPreferredLocales();
+    SDL_Locale *locales_start_address = locales;
     if (!locales)
     {
         std::cout << "ERROR: Couldn't read preffered locales. " << SDL_GetError() << std::endl;
         return language;
     }
-    if (strcmp(locales->language, "de"))
+    int i = 0;
+    while (locales->language)
     {
-        language = 1;
+        if (!_stricmp(locales->language, "en"))
+        {
+            language = 0;
+            break;
+        }
+        else if (!_stricmp(locales->language, "de"))
+        {
+            language = 1;
+            break;
+        }
+        else if (!_stricmp(locales->language, "es"))
+        {
+            language = 2;
+            break;
+        }
+        else if (!_stricmp(locales->language, "fr"))
+        {
+            language = 3;
+            break;
+        }
+        else if (!_stricmp(locales->language, "it"))
+        {
+            language = 4;
+            break;
+        }
+        else if (!_stricmp(locales->language, "nl"))
+        {
+            language = 5;
+            break;
+        }
+        locales++;
     }
-    else if (strcmp(locales->language, "es"))
-    {
-        language = 2;
-    }
-    else if (strcmp(locales->language, "fr"))
-    {
-        language = 3;
-    }
-    else if (strcmp(locales->language, "it"))
-    {
-        language = 4;
-    }
-    else if (strcmp(locales->language, "nl"))
-    {
-        language = 5;
-    }
-    SDL_free(locales);
+    SDL_free(locales_start_address);
     return language;
 }
 
