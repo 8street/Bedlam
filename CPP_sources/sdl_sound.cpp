@@ -134,11 +134,15 @@ int Sound::play_raw(int channel_index, int position, int samplerate, int volume,
     {
         return -1;
     }
+    const int chunk_index = get_chunk_index(channel_index);
+    if (chunk_index >= static_cast<int>(m_chunks_arr.size()))
+    {
+        return -1;
+    }
+
     int l_balance = 0;
     int r_balance = 0;
-    int palying_times = 0;
-    int chunk_index = get_chunk_index(channel_index);
-
+    const int palying_times = 0;
     volume = volume * m_master_volume / 100;
     if (balance > 0)
     {
@@ -151,7 +155,7 @@ int Sound::play_raw(int channel_index, int position, int samplerate, int volume,
         r_balance = balance + MIX_MAX_BALANCE;
     }
     m_chunks_arr[chunk_index].resample(samplerate);
-    int free_channel_index = get_first_free_channel(chunk_index);
+    const int free_channel_index = get_first_free_channel(chunk_index);
     Mix_Volume(free_channel_index, volume);
     Mix_SetPanning(free_channel_index, static_cast<uint8_t>(l_balance), static_cast<uint8_t>(r_balance));
     Mix_PlayChannel(free_channel_index, m_chunks_arr[chunk_index].get_chunk(), palying_times);
