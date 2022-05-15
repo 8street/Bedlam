@@ -51,8 +51,10 @@ int Window::init()
 #ifdef _DEBUG
     const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(Resolution(640, 480));
 #else
+    //const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(
+    //    Resolution(monitor_width, monitor_height));
     const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(
-        Resolution(monitor_width, monitor_height));
+        Resolution(640, 480));
 #endif
     m_game_width = resolution_settings.m_resolution.get_width();
     m_game_height = resolution_settings.m_resolution.get_height();
