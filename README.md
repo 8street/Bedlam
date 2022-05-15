@@ -14,7 +14,6 @@ The sources can be compiled and fully playable. Rare crashes are possible.
 # List of changes
 
 * Port to SDL (working on Windows)
-* Add various screen resolutions (game selects a resolution close up to your monitor resolution. From 480p to 1440p)
 * Fix some bugs
 
 # Contributing
