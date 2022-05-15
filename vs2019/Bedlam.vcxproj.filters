@@ -10,49 +10,198 @@
     <Filter Include="ASM sources">
       <UniqueIdentifier>{c1bff3d2-3467-4467-901c-f1fd2e316ee7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CPP sources">
+      <UniqueIdentifier>{a72a703b-a2c8-45e1-95a1-fce062007e35}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\libs\smackw32.lib">
-      <Filter>Libs</Filter>
-    </Library>
-    <Library Include="..\libs\dplay.lib">
       <Filter>Libs</Filter>
     </Library>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
     <None Include="..\.gitignore" />
-    <None Include="..\ASM_includes\ddraw.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\dplay.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\dsound.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\gdi32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
-    <None Include="..\ASM_includes\kernel32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
     <None Include="..\ASM_includes\smackw32.inc">
       <Filter>ASM includes</Filter>
     </None>
-    <None Include="..\ASM_includes\user32.inc">
-      <Filter>ASM includes</Filter>
+    <None Include="..\ASM_sources\bedlam_data.inc">
+      <Filter>ASM sources</Filter>
     </None>
-    <None Include="..\ASM_includes\winmm.inc">
-      <Filter>ASM includes</Filter>
+    <None Include="..\ASM_sources\bedlam.inc">
+      <Filter>ASM sources</Filter>
     </None>
-    <None Include="..\ASM_includes\advapi32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
+    <None Include="..\.clang-format" />
   </ItemGroup>
   <ItemGroup>
     <MASM Include="..\ASM_sources\bedlam.asm">
       <Filter>ASM sources</Filter>
     </MASM>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\CPP_sources\screenshot.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\sdl_cursor.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\sdl_event.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\sdl_sound.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\sdl_texture.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\sdl_timer.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\sdl_window.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\tiles.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\timer.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\bedlam.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\bedlam_draw.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\bin_file.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\exported_func.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\file.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\helper.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\ingame_music.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\keyboard.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\main.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\mouse.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\options.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\palette.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\render_position.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\resolutions.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\screen_data.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\wav.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\sound_chunk.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\save.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\CPP_sources\sdl_cursor.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\sdl_event.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\sdl_sound.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\sdl_texture.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\sdl_timer.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\sdl_window.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\tiles.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\timer.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\bedlam_draw.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\bin_file.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\exported_func.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\file.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\helper.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\ingame_music.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\keyboard.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\library_func.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\main.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\mouse.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\options.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\palette.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\render_position.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\resolutions.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\screen_data.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\screenshot.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\wav.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\sound_chunk.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\save.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
