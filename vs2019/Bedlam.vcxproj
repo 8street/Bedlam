@@ -118,17 +118,17 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\SDL2_mixer\lib\x86;$(ProjectDir)..\SDL2\lib\x86;$(ProjectDir)..\libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <IntDir>$(SolutionDir)$(Configuration)\temp\</IntDir>
-    <SourcePath>$(ProjectDir)..\ASM_sources;$(ProjectDir)..\CPP_sources;$(VC_SourcePath);</SourcePath>
+    <SourcePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\ASM_sources;$(ProjectDir)..\CPP_sources;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
+    <IncludePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
     <LibraryPath>$(ProjectDir)..\SDL2_mixer\lib\x86;$(ProjectDir)..\SDL2\lib\x86;$(ProjectDir)..\libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <IntDir>$(SolutionDir)$(Configuration)\temp\</IntDir>
-    <SourcePath>$(ProjectDir)..\ASM_sources;$(ProjectDir)..\CPP_sources;$(VC_SourcePath);</SourcePath>
+    <SourcePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\ASM_sources;$(ProjectDir)..\CPP_sources;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
