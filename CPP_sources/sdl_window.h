@@ -16,8 +16,12 @@ public:
     int init();
 
     int set_palette(uint8_t *pal_ptr, int offset, int num_entries);
+    int set_palette(uint8_t *pal_ptr, int offset, int num_entries, Palette_mode mode);
     int clear_screen();
     int fill_screen_surface(uint8_t *buffer_ptr);
+    int fill_screen_surface(
+        uint8_t *buffer_ptr, int screen_x, int screen_y, int buffer_x, int buffer_y, int buffer_count_w, int buffer_count_h,
+        int buffer_w);
     int unlock_screen_surface() const;
     int redraw();
     int copy_screen_to_buffer(uint8_t *buffer_ptr);

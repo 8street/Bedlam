@@ -51,10 +51,9 @@ int Window::init()
 #ifdef _DEBUG
     const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(Resolution(640, 480));
 #else
-    //const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(
+    // const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(
     //    Resolution(monitor_width, monitor_height));
-    const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(
-        Resolution(640, 480));
+    const Resolution_settings &resolution_settings = GAME_OPTIONS.get_resolution_settings(Resolution(640, 480));
 #endif
     m_game_width = resolution_settings.m_resolution.get_width();
     m_game_height = resolution_settings.m_resolution.get_height();
@@ -143,8 +142,13 @@ int Window::init()
 
 int Window::set_palette(uint8_t *pal_ptr, int offset, int num_entries)
 {
+    return set_palette(pal_ptr, offset, num_entries, Palette_mode::Bedlam);
+}
+
+int Window::set_palette(uint8_t *pal_ptr, int offset, int num_entries, Palette_mode mode)
+{
     int ret_val = 0;
-    ret_val |= m_screen.set_palette(pal_ptr, offset, num_entries);
+    ret_val |= m_screen.set_palette(pal_ptr, offset, num_entries, mode);
     return ret_val;
 }
 
@@ -157,10 +161,20 @@ int Window::clear_screen()
     return ret_val;
 }
 
-int Window::fill_screen_surface(uint8_t *buffer)
+int Window::fill_screen_surface(uint8_t *buffer_ptr)
 {
     int ret_val = 0;
-    ret_val |= m_screen.fill_screen_surface(buffer);
+    ret_val |= m_screen.fill_screen_surface(buffer_ptr);
+    return ret_val;
+}
+
+int Window::fill_screen_surface(
+    uint8_t *buffer_ptr, int screen_x, int screen_y, int buffer_x, int buffer_y, int buffer_count_w, int buffer_count_h,
+    int buffer_w)
+{
+    int ret_val = 0;
+    ret_val |= m_screen.fill_screen_surface(
+        buffer_ptr, screen_x, screen_y, buffer_x, buffer_y, buffer_count_w, buffer_count_h, buffer_w);
     return ret_val;
 }
 

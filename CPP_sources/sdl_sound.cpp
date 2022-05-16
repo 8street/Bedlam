@@ -232,6 +232,11 @@ int Sound::free_unused_chunks(int new_channels_count)
     return new_channels_count;
 }
 
+int Sound::get_last_channel_index()
+{
+    return get_channel_index(get_last_chunk_index());
+}
+
 int Sound::get_chunk_index(const std::string &path) const
 {
     auto search = m_filename_index_map.find(path);

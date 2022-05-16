@@ -13,6 +13,9 @@
     <Filter Include="CPP sources">
       <UniqueIdentifier>{a72a703b-a2c8-45e1-95a1-fce062007e35}</UniqueIdentifier>
     </Filter>
+    <Filter Include="libsmacker-1.2.0">
+      <UniqueIdentifier>{b4bfdfee-3d04-4219-b2c6-87310d4a16fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\libs\smackw32.lib">
@@ -120,6 +123,15 @@
     <ClInclude Include="..\CPP_sources\save.h">
       <Filter>CPP sources</Filter>
     </ClInclude>
+    <ClInclude Include="..\CPP_sources\smk.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libsmacker-1.2.0\smacker.h">
+      <Filter>libsmacker-1.2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libsmacker-1.2.0\smk_malloc.h">
+      <Filter>libsmacker-1.2.0</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CPP_sources\sdl_cursor.cpp">
@@ -202,6 +214,12 @@
     </ClCompile>
     <ClCompile Include="..\CPP_sources\save.cpp">
       <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\smk.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libsmacker-1.2.0\smacker.c">
+      <Filter>libsmacker-1.2.0</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

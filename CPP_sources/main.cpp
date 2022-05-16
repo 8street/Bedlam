@@ -7,6 +7,8 @@
 #include "sdl_sound.h"
 #include "sdl_timer.h"
 #include "sdl_window.h"
+#include "smk.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -41,6 +43,11 @@ int main(int argc, char *argv[])
     if (SOUND_SYSTEM.init())
     {
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Problem", "Error init sound!", NULL);
+    }
+
+    while (1)
+    {
+        play_smack("GAMEGFX/TITLE.SMK");
     }
 
     // Run bedlam main function

@@ -23,11 +23,12 @@ public:
     int set_volume(int new_volume);
     int is_stopped(int channel_index) const;
     int free_unused_chunks(int new_channels_count);
+    int get_last_channel_index();
 
 private:
     int get_chunk_index(const std::string &path) const;
-    int get_last_chunk_index() const;
     int get_first_free_channel(int chunk_index) const;
+    int get_last_chunk_index() const;
     int get_volume(int x, int y) const;
     int get_balance(int x, int y) const;
     int get_channel_index(int chunk_index) const;

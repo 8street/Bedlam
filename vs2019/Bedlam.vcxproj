@@ -48,10 +48,13 @@
     <ClInclude Include="..\CPP_sources\sdl_texture.h" />
     <ClInclude Include="..\CPP_sources\sdl_timer.h" />
     <ClInclude Include="..\CPP_sources\sdl_window.h" />
+    <ClInclude Include="..\CPP_sources\smk.h" />
     <ClInclude Include="..\CPP_sources\sound_chunk.h" />
     <ClInclude Include="..\CPP_sources\tiles.h" />
     <ClInclude Include="..\CPP_sources\timer.h" />
     <ClInclude Include="..\CPP_sources\wav.h" />
+    <ClInclude Include="..\libsmacker-1.2.0\smacker.h" />
+    <ClInclude Include="..\libsmacker-1.2.0\smk_malloc.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CPP_sources\bedlam_draw.cpp" />
@@ -77,10 +80,19 @@
     <ClCompile Include="..\CPP_sources\sdl_texture.cpp" />
     <ClCompile Include="..\CPP_sources\sdl_timer.cpp" />
     <ClCompile Include="..\CPP_sources\sdl_window.cpp" />
+    <ClCompile Include="..\CPP_sources\smk.cpp" />
     <ClCompile Include="..\CPP_sources\sound_chunk.cpp" />
     <ClCompile Include="..\CPP_sources\tiles.cpp" />
     <ClCompile Include="..\CPP_sources\timer.cpp" />
     <ClCompile Include="..\CPP_sources\wav.cpp" />
+    <ClCompile Include="..\libsmacker-1.2.0\smacker.c">
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">TurnOffAllWarnings</WarningLevel>
+      <WarningLevel Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">TurnOffAllWarnings</WarningLevel>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</TreatWarningAsError>
+      <TreatWarningAsError Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</TreatWarningAsError>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

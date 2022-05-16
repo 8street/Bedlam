@@ -55,7 +55,7 @@ int Screen_data::init(
     return ret_val;
 }
 
-int Screen_data::set_palette(const uint8_t *pal_ptr, int offset, int num_entries)
+int Screen_data::set_palette(const uint8_t *pal_ptr, int offset, int num_entries, Palette_mode mode)
 {
     int ret_val = 0;
     SDL_Color color;
@@ -68,12 +68,13 @@ int Screen_data::set_palette(const uint8_t *pal_ptr, int offset, int num_entries
     {
         ret_val |= 1;
     }
+    const int int_gain = static_cast<int>(mode);
     int n = 0;
     for (int i = offset; i < num_entries; i++)
     {
-        color.r = 4 * pal_ptr[n * 3];
-        color.g = 4 * pal_ptr[n * 3 + 1];
-        color.b = 4 * pal_ptr[n * 3 + 2];
+        color.r = int_gain * pal_ptr[n * 3];
+        color.g = int_gain * pal_ptr[n * 3 + 1];
+        color.b = int_gain * pal_ptr[n * 3 + 2];
         color.a = 0;
         n++;
 
@@ -101,7 +102,7 @@ int Screen_data::set_palette(const File &palette_file)
     {
         num_entries = 256;
     }
-    return set_palette(palette_ptr, offset, num_entries);
+    return set_palette(palette_ptr, offset, num_entries, Palette_mode::Bedlam);
 }
 
 uint8_t *Screen_data::get_RGB_palette_ptr()
