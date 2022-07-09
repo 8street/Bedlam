@@ -53,12 +53,10 @@ int Smack::play()
     int ret_val = 0;
     // WINDOW_CURSOR.set_waiting_cursor();
     const int old_num_channels = SOUND_SYSTEM.get_last_channel_index();
-    ret_val |= smk_enable_audio(m_smack_ptr, get_first_existing_track(), 1);
     ret_val |= play_audio(get_first_existing_track());
     WINDOW_CURSOR.hide_cursor();
     // Audio delay
     SDL_Delay(40);
-    ret_val |= smk_enable_video(m_smack_ptr, 1);
     ret_val |= play_video();
     SOUND_SYSTEM.free_unused_chunks(old_num_channels);
     return ret_val;
@@ -122,6 +120,7 @@ int Smack::play_video()
         return -1;
     }
     int ret_val = 0;
+    ret_val |= smk_enable_video(m_smack_ptr, 1);
     smk_first(m_smack_ptr);
     unsigned long cur_frame;
     ret_val |= smk_info_all(m_smack_ptr, &cur_frame, NULL, NULL);
@@ -151,6 +150,7 @@ int Smack::play_audio(int track)
         return -1;
     }
     int ret_val = 0;
+    ret_val |= smk_enable_audio(m_smack_ptr, track, 1);
     smk_first(m_smack_ptr);
     unsigned long cur_frame;
     ret_val |= smk_info_all(m_smack_ptr, &cur_frame, NULL, NULL);
