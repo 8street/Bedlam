@@ -6,11 +6,11 @@ extern "C" volatile int32_t WAITING_TIMER;
 extern "C" volatile int32_t GAME_UPDATE_TIMER;
 extern "C" void dos_sleep(uint32_t time);
 
-class Timer
+class SDL_Timer
 {
 public:
-    Timer(int interval_ms = 10);
-    ~Timer();
+    SDL_Timer(int interval_ms = 10);
+    ~SDL_Timer();
 
     int init(int interval_ms);
     int init();
@@ -20,4 +20,4 @@ private:
     SDL_TimerID m_timer_id = 0;
 };
 
-extern Timer GAME_TIMER;
+extern SDL_Timer GAME_TIMER;

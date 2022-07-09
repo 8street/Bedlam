@@ -6,7 +6,6 @@
 
 #include "mouse.h"
 #include "smk.h"
-#include "timer.h"
 
 Smack::Smack()
 {
@@ -59,7 +58,7 @@ int Smack::play()
     ret_val |= play_audio(get_first_existing_track());
     WINDOW_CURSOR.hide_cursor();
     // Audio delay
-    SDL_Delay(20);
+    SDL_Delay(40);
     ret_val |= play_video();
     SOUND_SYSTEM.free_unused_chunks(old_num_channels);
     return ret_val;
@@ -123,7 +122,6 @@ int Smack::play_video()
         return -1;
     }
     int ret_val = 0;
-    double time_error_ms = 0.0;
     smk_first(m_smack_ptr);
     unsigned long cur_frame;
     ret_val |= smk_info_all(m_smack_ptr, &cur_frame, NULL, NULL);
@@ -136,29 +134,12 @@ int Smack::play_video()
     // Output video
     for (cur_frame = 0; cur_frame < m_num_frames; cur_frame++)
     {
-        frame_timer.reset();
         ret_val |= GAME_WINDOW.fill_screen_surface(
             const_cast<uint8_t *>(image_data), start_x, start_y, 0, 0, m_width, m_height, m_width);
         ret_val |= GAME_WINDOW.redraw();
         ret_val |= SDL_events();
         ret_val |= smk_next(m_smack_ptr);
-        double delay_ms = m_us_per_frame / 1000.0 - frame_timer.elapsed() * 1000.0;
-        if (delay_ms < 0.0)
-        {
-            delay_ms = 0.0;
-        }
-        time_error_ms += delay_ms - lround(delay_ms);
-        if (time_error_ms > 1.0)
-        {
-            delay_ms += 1.0;
-            time_error_ms -= 1.0;
-        }
-        else if (time_error_ms < -1.0)
-        {
-            delay_ms -= 1.0;
-            time_error_ms += 1.0;
-        }
-        SDL_Delay(lround(delay_ms));
+        ret_val |= wait_next_frame(frame_timer);
     }
     return ret_val;
 }
@@ -179,8 +160,6 @@ int Smack::play_audio(int track)
     const int audio_chunk_index = SOUND_SYSTEM.add_raw(
         audio_data.data(), audio_data.size(), m_samplerate[track], m_bitrate[track], m_channels[track]);
     ret_val |= SOUND_SYSTEM.play_sound(audio_chunk_index);
-    //SOUND_SYSTEM.add_music(audio_data.data(), audio_data.size(), m_samplerate[track], m_bitrate[track], m_channels[track]);
-    //SOUND_SYSTEM.play_music();
     return ret_val;
 }
 
@@ -223,5 +202,29 @@ int Smack::get_first_existing_track() const
             return track;
         }
     }
+    return 0;
+}
+
+int Smack::wait_next_frame(Timer &frame_timer) const
+{
+    static double time_error_ms;
+    double delay_ms = m_us_per_frame / 1000.0 - frame_timer.elapsed() * 1000.0;
+    if (delay_ms < 0.0)
+    {
+        delay_ms = 0.0;
+    }
+    time_error_ms += delay_ms - lround(delay_ms);
+    if (time_error_ms > 1.0)
+    {
+        delay_ms += 1.0;
+        time_error_ms -= 1.0;
+    }
+    else if (time_error_ms < -1.0)
+    {
+        delay_ms -= 1.0;
+        time_error_ms += 1.0;
+    }
+    SDL_Delay(lround(delay_ms));
+    frame_timer.reset();
     return 0;
 }

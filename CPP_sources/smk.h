@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "smacker.h"
+#include "timer.h"
 
 // .SMK have 7 tracks
 #define MAX_TRACK 7
@@ -29,6 +30,7 @@ private:
     int fill_audio_data(std::vector<uint8_t> &audio_data, int track) const;
     bool track_exist(int track) const;
     int get_first_existing_track() const;
+    int wait_next_frame(Timer &frame_timer) const;
 
     smk m_smack_ptr = nullptr;
     unsigned long m_width = 0, m_height = 0, m_num_frames = 0;

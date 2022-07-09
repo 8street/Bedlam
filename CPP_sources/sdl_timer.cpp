@@ -9,31 +9,31 @@
 volatile int32_t WAITING_TIMER;
 volatile int32_t GAME_UPDATE_TIMER;
 static Uint32 sdl_timer_callback(Uint32 interval, void *param);
-Timer GAME_TIMER;
+SDL_Timer GAME_TIMER;
 
 void dos_sleep(uint32_t time)
 {
     SDL_Delay(time);
 }
 
-Timer::Timer(int interval_ms)
+SDL_Timer::SDL_Timer(int interval_ms)
     : m_interval_ms(interval_ms)
 {
 }
 
-Timer::~Timer()
+SDL_Timer::~SDL_Timer()
 {
     SDL_RemoveTimer(m_timer_id);
     SDL_QuitSubSystem(SDL_INIT_TIMER);
 }
 
-int Timer::init(int interval_ms)
+int SDL_Timer::init(int interval_ms)
 {
     m_interval_ms = interval_ms;
     return init();
 }
 
-int Timer::init()
+int SDL_Timer::init()
 {
     PALETTE_TIMER = 0;
     int ret_val = 0;
