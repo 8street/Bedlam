@@ -9,9 +9,6 @@ extern cursor WINDOW_CURSOR;
 extern int16_t CURSOR_X1;
 extern int16_t CURSOR_Y1;
 
-extern "C" volatile int CURSOR_ICON;
-extern int32_t CURSOR_ICON2;
-
 extern uint16_t CURSOR_SURFACE_SIZE;
 
 extern "C" volatile uint8_t UPDATE_CURSOR_BY_TIMER;
@@ -45,3 +42,4 @@ extern "C" int hide_cursor();
 void get_cursor_pos(int *x, int *y);
 extern "C" void show_cursor();
 void mouse_buttons(uint16_t r_butt, uint16_t l_button);
+extern "C" void set_cursor_icon(int icon);

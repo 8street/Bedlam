@@ -47,7 +47,9 @@ int main(int argc, char *argv[])
 
     while (1)
     {
-        play_smack("GAMEGFX/TITLE.SMK");
+        //play_smack("GAMEGFX/TITLE.SMK");
+        Smack title("GAMEGFX/TITLE.SMK");
+        title.play();
     }
 
     // Run bedlam main function

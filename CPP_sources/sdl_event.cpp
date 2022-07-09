@@ -87,10 +87,6 @@ int cursor_events(const SDL_Event &event)
         if (event.user.type == SDL_USEREVENT && event.user.code == 1)
         {
             const int icon = WINDOW_CURSOR.get_cursor_img();
-            if (icon != CURSOR_ICON)
-            {
-                ret_val |= WINDOW_CURSOR.set_cursor_icon(CURSOR_ICON);
-            }
             if (icon == ICON_WAIT)
             {
                 ret_val |= WINDOW_CURSOR.update_waiting_cursor();

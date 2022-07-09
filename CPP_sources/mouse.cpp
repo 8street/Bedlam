@@ -128,3 +128,8 @@ void mouse_buttons(uint16_t r_butt, uint16_t l_button)
         MOUSE_BUTTONS_STATE &= 0xFFFFFFFD;
     }
 }
+
+void set_cursor_icon(int icon)
+{
+    WINDOW_CURSOR.set_cursor_icon(icon);
+}
