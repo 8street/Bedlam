@@ -28,7 +28,6 @@ private:
     int play_audio(int track);
     int fill_audio_data(std::vector<uint8_t> &audio_data, int track) const;
     bool track_exist(int track) const;
-    size_t get_audio_size(int track) const;
     int get_first_existing_track() const;
 
     smk m_smack_ptr = nullptr;

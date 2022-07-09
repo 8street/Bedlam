@@ -132,6 +132,9 @@
     <ClInclude Include="..\libsmacker-1.2.0\smk_malloc.h">
       <Filter>libsmacker-1.2.0</Filter>
     </ClInclude>
+    <ClInclude Include="..\CPP_sources\music_chunk.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CPP_sources\sdl_cursor.cpp">
@@ -220,6 +223,9 @@
     </ClCompile>
     <ClCompile Include="..\libsmacker-1.2.0\smacker.c">
       <Filter>libsmacker-1.2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\music_chunk.cpp">
+      <Filter>CPP sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

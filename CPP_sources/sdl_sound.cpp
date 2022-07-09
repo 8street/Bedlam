@@ -81,6 +81,18 @@ int Sound::add_raw(uint8_t *raw_ptr, int filesize, int samplerate, int bitrate, 
     return get_channel_index(chunk_index);
 }
 
+int Sound::add_music(uint8_t *raw_ptr, int filesize, int samplerate, int bitrate, int num_channels)
+{
+    if (!m_sound_was_initted)
+    {
+        return -1;
+    }
+    int ret_val = 0;
+    ret_val |= m_music.load_chunk(WAV(raw_ptr, filesize, samplerate, bitrate, num_channels));
+    Mix_VolumeMusic(MIX_MAX_VOLUME);
+    return 0;
+}
+
 int Sound::play_sound(int channel_index, int x, int y, bool loop)
 {
     if (!m_sound_was_initted)
@@ -160,6 +172,13 @@ int Sound::play_raw(int channel_index, int position, int samplerate, int volume,
     Mix_SetPanning(free_channel_index, static_cast<uint8_t>(l_balance), static_cast<uint8_t>(r_balance));
     Mix_PlayChannel(free_channel_index, m_chunks_arr[chunk_index].get_chunk(), palying_times);
     return free_channel_index;
+}
+
+int Sound::play_music()
+{
+    const int volume = m_master_volume * MIX_MAX_VOLUME / 100;
+    Mix_VolumeMusic(volume);
+    return Mix_PlayMusic(m_music.get_chunk(), 0);
 }
 
 int Sound::stop()

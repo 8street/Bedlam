@@ -35,6 +35,7 @@
     <ClInclude Include="..\CPP_sources\keyboard.h" />
     <ClInclude Include="..\CPP_sources\main.h" />
     <ClInclude Include="..\CPP_sources\mouse.h" />
+    <ClInclude Include="..\CPP_sources\music_chunk.h" />
     <ClInclude Include="..\CPP_sources\options.h" />
     <ClInclude Include="..\CPP_sources\palette.h" />
     <ClInclude Include="..\CPP_sources\render_position.h" />
@@ -67,6 +68,7 @@
     <ClCompile Include="..\CPP_sources\library_func.cpp" />
     <ClCompile Include="..\CPP_sources\main.cpp" />
     <ClCompile Include="..\CPP_sources\mouse.cpp" />
+    <ClCompile Include="..\CPP_sources\music_chunk.cpp" />
     <ClCompile Include="..\CPP_sources\options.cpp" />
     <ClCompile Include="..\CPP_sources\palette.cpp" />
     <ClCompile Include="..\CPP_sources\render_position.cpp" />

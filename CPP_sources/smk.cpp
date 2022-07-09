@@ -179,6 +179,8 @@ int Smack::play_audio(int track)
     const int audio_chunk_index = SOUND_SYSTEM.add_raw(
         audio_data.data(), audio_data.size(), m_samplerate[track], m_bitrate[track], m_channels[track]);
     ret_val |= SOUND_SYSTEM.play_sound(audio_chunk_index);
+    //SOUND_SYSTEM.add_music(audio_data.data(), audio_data.size(), m_samplerate[track], m_bitrate[track], m_channels[track]);
+    //SOUND_SYSTEM.play_music();
     return ret_val;
 }
 
@@ -190,7 +192,6 @@ int Smack::fill_audio_data(std::vector<uint8_t> &audio_data, int track) const
     }
     int ret_val = 0;
     audio_data.clear();
-    // audio_data.reserve(get_audio_size(track));
     smk_first(m_smack_ptr);
     unsigned long cur_frame;
     ret_val |= smk_info_all(m_smack_ptr, &cur_frame, NULL, NULL);
@@ -211,27 +212,6 @@ int Smack::fill_audio_data(std::vector<uint8_t> &audio_data, int track) const
 bool Smack::track_exist(int track) const
 {
     return m_track_mask & (1 << track);
-}
-
-size_t Smack::get_audio_size(int track) const
-{
-    if (!track_exist(track))
-    {
-        return 0;
-    }
-    size_t audio_size = 0;
-    smk_first(m_smack_ptr);
-    unsigned long cur_frame;
-    smk_info_all(m_smack_ptr, &cur_frame, NULL, NULL);
-
-    // get audio size
-    for (cur_frame = 0; cur_frame < m_num_frames; cur_frame++)
-    {
-        audio_size += smk_get_audio_size(m_smack_ptr, track);
-        smk_next(m_smack_ptr);
-        SDL_events();
-    }
-    return audio_size;
 }
 
 int Smack::get_first_existing_track() const
