@@ -189,7 +189,10 @@ int Smack::fill_audio_data(std::vector<uint8_t> &audio_data, int track) const
         frame_audiodata = smk_get_audio(m_smack_ptr, track);
         audio_data.insert(audio_data.end(), frame_audiodata, frame_audiodata + frame_audio_size);
         smk_next(m_smack_ptr);
-        SDL_events();
+        if (cur_frame % 100 == 0) 
+        {
+            SDL_events();
+        }
     }
     return ret_val;
 }
@@ -240,9 +243,14 @@ int Smack::wait_next_frame(Timer &frame_timer) const
 // 0044567C Bedlam1
 int play_smack(const char *filename, int32_t vertical_indent)
 {
-    if (!cinematics_is_enable() || !File::exist(filename))
+    if (!cinematics_is_enable())
     {
         return 0;
+    }
+    if(!File::exist(filename))
+    {
+        std::cout << "ERROR: SMACK file missing: " << filename << std::endl;
+        return -1;
     }
     Smack video(filename);
     return video.play(true);
