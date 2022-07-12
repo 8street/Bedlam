@@ -142,7 +142,7 @@ int Smack::play_video(bool is_skippable)
         {
             return ret_val;
         }
-        ret_val |= smk_next(m_smack_ptr);
+        smk_next(m_smack_ptr);
         ret_val |= wait_next_frame(frame_timer);
     }
     return ret_val;
