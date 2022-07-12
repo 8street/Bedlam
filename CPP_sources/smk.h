@@ -38,3 +38,6 @@ private:
     unsigned char m_track_mask = 0, m_channels[MAX_TRACK] = {}, m_bitrate[MAX_TRACK] = {};
     unsigned long m_samplerate[MAX_TRACK] = {};
 };
+
+//////// Function calls from bedlam.asm ///////////
+extern "C" int play_smack(const char *filename, int32_t vertical_indent);

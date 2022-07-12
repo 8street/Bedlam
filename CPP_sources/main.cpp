@@ -45,12 +45,6 @@ int main(int argc, char *argv[])
         SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Problem", "Error init sound!", NULL);
     }
 
-    while (1)
-    {
-        Smack title("GAMEGFX/TITLE.SMK");
-        title.play();
-    }
-
     // Run bedlam main function
     return game_core1();
 }

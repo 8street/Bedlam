@@ -76,6 +76,8 @@ extrn hiscores_to_disk:proc
 extrn saves_exist:proc
 extrn hiscores_exist:proc
 
+extrn play_smack:proc
+
 ;==========================================================
 
 extrn SCREEN_BUFFER_PTR:dword

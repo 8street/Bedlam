@@ -331,7 +331,7 @@ int Sound::get_chunk_index(int channel_index) const
     return channel_index / m_num_simultaneously_playing_channels;
 }
 
-//////// Function calls from bedlam2.asm ///////////
+//////// Function calls from bedlam.asm ///////////
 
 int play_sound(int channel_index, int x, int y, int a5)
 {

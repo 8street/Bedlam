@@ -215,11 +215,7 @@ int32_t speechs_is_enable()
 
 int32_t cinematics_is_enable()
 {
-    // TODO: check all cinema files
-    if (!File::exist("GAMEGFX/BRF_DROP.SMK") || !File::exist("GAMEGFX/SHOP.SMK"))
-    {
-        return 0;
-    }
+    // So file OPTION.BDL does not contain cinematics then is always on
     return 1;
 }
 

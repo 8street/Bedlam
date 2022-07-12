@@ -4,8 +4,10 @@
 #include "sdl_sound.h"
 #include "sdl_window.h"
 
+#include "file.h"
 #include "keyboard.h"
 #include "mouse.h"
+#include "options.h"
 #include "smk.h"
 
 Smack::Smack()
@@ -31,7 +33,7 @@ int Smack::load(const std::string &filename)
     m_smack_ptr = smk_open_file(filename.c_str(), SMK_MODE_MEMORY);
     if (!m_smack_ptr)
     {
-        std::cout << "Errors encountered opening " << filename << std::endl;
+        std::cout << "ERROR: COULD NOT OPEN SMACK FILE " << filename << std::endl;
         return -1;
     }
     int ret_val = 0;
@@ -52,10 +54,8 @@ int Smack::play(bool is_skippable)
         return -1;
     }
     int ret_val = 0;
-    // WINDOW_CURSOR.set_waiting_cursor();
     const int old_num_channels = SOUND_SYSTEM.get_last_channel_index();
     ret_val |= play_audio(get_first_existing_track());
-    WINDOW_CURSOR.hide_cursor();
     // Audio delay
     SDL_Delay(40);
     ret_val |= play_video(is_skippable);
@@ -233,4 +233,17 @@ int Smack::wait_next_frame(Timer &frame_timer) const
     SDL_Delay(lround(delay_ms));
     frame_timer.reset();
     return 0;
+}
+
+//////// Function calls from bedlam.asm ///////////
+
+// 0044567C Bedlam1
+int play_smack(const char *filename, int32_t vertical_indent)
+{
+    if (!cinematics_is_enable() || !File::exist(filename))
+    {
+        return 0;
+    }
+    Smack video(filename);
+    return video.play(true);
 }
