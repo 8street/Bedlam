@@ -17,7 +17,7 @@ public:
     Smack(const std::string &filename);
     ~Smack();
     int load(const std::string &filename);
-    int play();
+    int play(bool is_skippable = true);
 
 private:
     int destroy();
@@ -25,7 +25,7 @@ private:
     int get_video_pos_x() const;
     int get_video_pos_y() const;
     int set_smack_palette();
-    int play_video();
+    int play_video(bool is_skippable);
     int play_audio(int track);
     int fill_audio_data(std::vector<uint8_t> &audio_data, int track) const;
     bool track_exist(int track) const;

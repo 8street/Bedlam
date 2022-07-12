@@ -4,6 +4,7 @@
 #include "sdl_sound.h"
 #include "sdl_window.h"
 
+#include "keyboard.h"
 #include "mouse.h"
 #include "smk.h"
 
@@ -44,7 +45,7 @@ int Smack::load(const std::string &filename)
     return ret_val;
 }
 
-int Smack::play()
+int Smack::play(bool is_skippable)
 {
     if (!m_smack_ptr)
     {
@@ -57,7 +58,7 @@ int Smack::play()
     WINDOW_CURSOR.hide_cursor();
     // Audio delay
     SDL_Delay(40);
-    ret_val |= play_video();
+    ret_val |= play_video(is_skippable);
     SOUND_SYSTEM.free_unused_chunks(old_num_channels);
     return ret_val;
 }
@@ -113,7 +114,7 @@ int Smack::set_smack_palette()
     return GAME_WINDOW.set_palette(const_cast<uint8_t *>(palette_data), 0, 256, Palette_mode::normal);
 }
 
-int Smack::play_video()
+int Smack::play_video(bool is_skippable)
 {
     if (!m_smack_ptr)
     {
@@ -137,6 +138,10 @@ int Smack::play_video()
             const_cast<uint8_t *>(image_data), start_x, start_y, 0, 0, m_width, m_height, m_width);
         ret_val |= GAME_WINDOW.redraw();
         ret_val |= SDL_events();
+        if (is_skippable && (mouse_left_button_pressed() || mouse_right_button_pressed() || GAME_KEYBOARD.any_key_pressed()))
+        {
+            return ret_val;
+        }
         ret_val |= smk_next(m_smack_ptr);
         ret_val |= wait_next_frame(frame_timer);
     }

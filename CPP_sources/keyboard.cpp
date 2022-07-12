@@ -125,7 +125,15 @@ int Keyboard::key_down(SDL_Keycode sdl_keycode)
 {
     uint8_t bedlam_scancode = get_ordinary_scancode_from_sdl_keycode(sdl_keycode);
     bedlam_keystates_update(bedlam_scancode, false);
+    m_any_key_pressed = true;
     return 0;
+}
+
+bool Keyboard::any_key_pressed()
+{
+    const bool ret_val = m_any_key_pressed;
+    m_any_key_pressed = false;
+    return ret_val;
 }
 
 // 0041BE05 Bedlam 1
