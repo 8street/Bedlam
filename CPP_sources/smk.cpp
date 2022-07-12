@@ -155,7 +155,8 @@ int Smack::play_audio(int track)
     unsigned long cur_frame;
     ret_val |= smk_info_all(m_smack_ptr, &cur_frame, NULL, NULL);
     std::vector<uint8_t> audio_data;
-    fill_audio_data(audio_data, track);
+    ret_val |= fill_audio_data(audio_data, track);
+    ret_val |= smk_enable_audio(m_smack_ptr, track, 0);
     // Output audio
     const int audio_chunk_index = SOUND_SYSTEM.add_raw(
         audio_data.data(), audio_data.size(), m_samplerate[track], m_bitrate[track], m_channels[track]);

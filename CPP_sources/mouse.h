@@ -43,3 +43,5 @@ void get_cursor_pos(int *x, int *y);
 extern "C" void show_cursor();
 void mouse_buttons(uint16_t r_butt, uint16_t l_button);
 extern "C" void set_cursor_icon(int icon);
+bool mouse_right_button_pressed();
+bool mouse_left_button_pressed();
