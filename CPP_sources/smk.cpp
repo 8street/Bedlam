@@ -140,11 +140,12 @@ int Smack::play_video(bool is_skippable)
         ret_val |= SDL_events();
         if (is_skippable && (mouse_left_button_pressed() || mouse_right_button_pressed() || GAME_KEYBOARD.any_key_pressed()))
         {
-            return ret_val;
+            break;
         }
         smk_next(m_smack_ptr);
         ret_val |= wait_next_frame(frame_timer);
     }
+    ret_val |= smk_enable_video(m_smack_ptr, 0);
     return ret_val;
 }
 
