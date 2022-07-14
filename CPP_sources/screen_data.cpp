@@ -228,16 +228,21 @@ SDL_Texture *Screen_data::get_texture()
 
 int Screen_data::copy_surface_to_buffer(uint8_t *buffer_ptr)
 {
+    return copy_surface_to_buffer(buffer_ptr, ORIGINAL_GAME_WIDTH, ORIGINAL_GAME_HEIGHT);
+}
+
+int Screen_data::copy_surface_to_buffer(uint8_t *buffer_ptr, int buffer_width, int buffer_height)
+{
     int ret_val = 0;
     if (m_must_lock_surface)
     {
         ret_val |= SDL_LockSurface(m_surface);
     }
     uint8_t *source = (uint8_t *)m_surface->pixels;
-    for (int y = 0; y < ORIGINAL_GAME_HEIGHT; y++)
+    for (int y = 0; y < buffer_height; y++)
     {
-        memcpy(buffer_ptr, source, ORIGINAL_GAME_WIDTH);
-        buffer_ptr += ORIGINAL_GAME_WIDTH;
+        memcpy(buffer_ptr, source, buffer_width);
+        buffer_ptr += buffer_width;
         source += m_surface->w;
     }
     if (m_must_lock_surface)

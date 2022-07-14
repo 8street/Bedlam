@@ -16,12 +16,18 @@ public:
     Smack();
     Smack(const std::string &filename);
     ~Smack();
+
     int load(const std::string &filename);
     int play(bool is_skippable = true);
+    int wait_next_frame();
+    int next_frame();
+    int encode_frame();
+    int video_frame_to_buffer(uint8_t *buffer, int buffer_width, int buffer_height);
+    int enable_video_audio();
+    int play_audio();
 
 private:
     int destroy();
-    int enable_video_audio();
     int get_video_pos_x() const;
     int get_video_pos_y() const;
     int set_smack_palette();
@@ -30,13 +36,14 @@ private:
     int fill_audio_data(std::vector<uint8_t> &audio_data, int track) const;
     bool track_exist(int track) const;
     int get_first_existing_track() const;
-    int wait_next_frame(Timer &frame_timer) const;
 
     smk m_smack_ptr = nullptr;
     unsigned long m_width = 0, m_height = 0, m_num_frames = 0;
     double m_us_per_frame = 0;
     unsigned char m_track_mask = 0, m_channels[MAX_TRACK] = {}, m_bitrate[MAX_TRACK] = {};
     unsigned long m_samplerate[MAX_TRACK] = {};
+    Timer m_frame_timer;
+    int m_num_channels_old = 0;
 };
 
 //////// Function calls from bedlam.asm ///////////

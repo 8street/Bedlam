@@ -40,6 +40,8 @@ int Smack::load(const std::string &filename)
     ret_val |= smk_info_all(m_smack_ptr, NULL, &m_num_frames, &m_us_per_frame);
     ret_val |= smk_info_video(m_smack_ptr, &m_width, &m_height, NULL);
     ret_val |= smk_info_audio(m_smack_ptr, &m_track_mask, m_channels, m_bitrate, m_samplerate);
+    smk_first(m_smack_ptr);
+    m_num_channels_old = SOUND_SYSTEM.get_last_channel_index();
     if (ret_val)
     {
         destroy();
@@ -54,12 +56,8 @@ int Smack::play(bool is_skippable)
         return -1;
     }
     int ret_val = 0;
-    const int old_num_channels = SOUND_SYSTEM.get_last_channel_index();
     ret_val |= play_audio(get_first_existing_track());
-    // Audio delay
-    SDL_Delay(40);
     ret_val |= play_video(is_skippable);
-    SOUND_SYSTEM.free_unused_chunks(old_num_channels);
     return ret_val;
 }
 
@@ -70,6 +68,7 @@ int Smack::destroy()
         smk_close(m_smack_ptr);
         m_smack_ptr = nullptr;
     }
+    SOUND_SYSTEM.free_unused_chunks(m_num_channels_old);
     return 0;
 }
 
@@ -130,7 +129,7 @@ int Smack::play_video(bool is_skippable)
     ret_val |= set_smack_palette();
     const int start_x = get_video_pos_x();
     const int start_y = get_video_pos_y();
-    Timer frame_timer;
+    m_frame_timer.reset();
     // Output video
     for (cur_frame = 0; cur_frame < m_num_frames; cur_frame++)
     {
@@ -143,7 +142,7 @@ int Smack::play_video(bool is_skippable)
             break;
         }
         smk_next(m_smack_ptr);
-        ret_val |= wait_next_frame(frame_timer);
+        ret_val |= wait_next_frame();
     }
     ret_val |= smk_enable_video(m_smack_ptr, 0);
     return ret_val;
@@ -167,6 +166,8 @@ int Smack::play_audio(int track)
     const int audio_chunk_index = SOUND_SYSTEM.add_raw(
         audio_data.data(), audio_data.size(), m_samplerate[track], m_bitrate[track], m_channels[track]);
     ret_val |= SOUND_SYSTEM.play_sound(audio_chunk_index);
+    // Audio delay
+    SDL_Delay(40);
     return ret_val;
 }
 
@@ -215,10 +216,14 @@ int Smack::get_first_existing_track() const
     return 0;
 }
 
-int Smack::wait_next_frame(Timer &frame_timer) const
+int Smack::wait_next_frame()
 {
+    if (!m_smack_ptr)
+    {
+        return -1;
+    }
     static double time_error_ms;
-    double delay_ms = m_us_per_frame / 1000.0 - frame_timer.elapsed() * 1000.0;
+    double delay_ms = m_us_per_frame / 1000.0 - m_frame_timer.elapsed() * 1000.0;
     if (delay_ms < 0.0)
     {
         delay_ms = 0.0;
@@ -235,8 +240,51 @@ int Smack::wait_next_frame(Timer &frame_timer) const
         time_error_ms += 1.0;
     }
     SDL_Delay(lround(delay_ms));
-    frame_timer.reset();
+    m_frame_timer.reset();
     return 0;
+}
+
+int Smack::next_frame()
+{
+    if (!m_smack_ptr)
+    {
+        return -1;
+    }
+    SDL_events();
+    int ret_val = static_cast<int>(smk_next(m_smack_ptr));
+    if (ret_val == -1)
+    {
+        return -1;
+    }
+    return 0;
+}
+
+int Smack::encode_frame()
+{
+
+    return 0;
+}
+
+int Smack::video_frame_to_buffer(uint8_t *buffer, int buffer_width, int buffer_height)
+{
+    if (!m_smack_ptr)
+    {
+        return -1;
+    }
+    const int start_x = get_video_pos_x();
+    const int start_y = get_video_pos_y();
+    const unsigned char *image_data = smk_get_video(m_smack_ptr);
+    Screen_data video_data(const_cast<uint8_t *>(image_data), m_width, m_height, start_x, start_y);
+    return video_data.copy_surface_to_buffer(buffer, buffer_width, buffer_height);
+}
+
+int Smack::play_audio()
+{
+    if (!m_smack_ptr)
+    {
+        return -1;
+    }
+    return play_audio(get_first_existing_track());
 }
 
 //////// Function calls from bedlam.asm ///////////
@@ -255,4 +303,38 @@ int play_smack(const char *filename, int32_t vertical_indent)
     }
     Smack video(filename);
     return video.play(true);
+}
+
+Smack *open_smack(const char *filename)
+{
+    Smack *video = new Smack;
+    video->load(filename);
+    video->enable_video_audio();
+    video->play_audio();
+    return video;
+}
+
+void smack_close(Smack *video)
+{
+    if (!video)
+    {
+        return;
+    }
+    delete video;
+    video = nullptr;
+}
+
+void smack_to_buffer(Smack* video, uint32_t Unknown1, uint32_t Unknown2, uint32_t Stride, uint32_t FrameHeightInPixels, uint8_t* OutBuffer, uint32_t Flags)
+{
+    video->video_frame_to_buffer(OutBuffer, Stride, FrameHeightInPixels);
+}
+
+void smack_next_frame(Smack *video)
+{
+    video->next_frame();
+}
+
+void smack_wait(Smack* video)
+{
+    video->wait_next_frame();
 }

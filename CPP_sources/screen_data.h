@@ -42,6 +42,7 @@ public:
     int clear();
     SDL_Texture *get_texture();
     int copy_surface_to_buffer(uint8_t *buffer_ptr);
+    int copy_surface_to_buffer(uint8_t *buffer_ptr, int buffer_width, int buffer_height);
     int get_surface_width() const;
     int get_surface_height() const;
     const SDL_Rect *get_texture_coord() const;
