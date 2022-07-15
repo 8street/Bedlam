@@ -40,7 +40,6 @@ int Smack::load(const std::string &filename)
     ret_val |= smk_info_all(m_smack_ptr, NULL, &m_num_frames, &m_us_per_frame);
     ret_val |= smk_info_video(m_smack_ptr, &m_width, &m_height, NULL);
     ret_val |= smk_info_audio(m_smack_ptr, &m_track_mask, m_channels, m_bitrate, m_samplerate);
-    smk_first(m_smack_ptr);
     m_num_channels_old = SOUND_SYSTEM.get_last_channel_index();
     if (ret_val)
     {
@@ -76,14 +75,14 @@ int Smack::enable_video_audio()
 {
     int ret_val = 0;
     ret_val |= smk_enable_video(m_smack_ptr, 1);
-    int track;
-    for (track = 0; track < MAX_TRACK; track++)
+    for (int track = 0; track < MAX_TRACK; track++)
     {
         if (track_exist(track))
         {
             ret_val |= smk_enable_audio(m_smack_ptr, track, 1);
         }
     }
+    smk_first(m_smack_ptr);
     return ret_val;
 }
 
@@ -130,7 +129,6 @@ int Smack::play_video(bool is_skippable)
     const int start_x = get_video_pos_x();
     const int start_y = get_video_pos_y();
     m_frame_timer.reset();
-    mouse_clicked();
     // Output video
     for (cur_frame = 0; cur_frame < m_num_frames; cur_frame++)
     {
@@ -151,7 +149,7 @@ int Smack::play_video(bool is_skippable)
 
 int Smack::play_audio(int track)
 {
-    if (!m_smack_ptr)
+    if (!m_smack_ptr || track < 0 || track >= MAX_TRACK)
     {
         return -1;
     }
@@ -192,7 +190,7 @@ int Smack::fill_audio_data(std::vector<uint8_t> &audio_data, int track) const
         frame_audiodata = smk_get_audio(m_smack_ptr, track);
         audio_data.insert(audio_data.end(), frame_audiodata, frame_audiodata + frame_audio_size);
         smk_next(m_smack_ptr);
-        if (cur_frame % 100 == 0) 
+        if (cur_frame % 100 == 0)
         {
             SDL_events();
         }
@@ -214,7 +212,7 @@ int Smack::get_first_existing_track() const
             return track;
         }
     }
-    return 0;
+    return -1;
 }
 
 int Smack::wait_next_frame()
@@ -252,7 +250,7 @@ int Smack::next_frame()
         return -1;
     }
     SDL_events();
-    int ret_val = static_cast<int>(smk_next(m_smack_ptr));
+    int ret_val = smk_next(m_smack_ptr);
     if (ret_val == -1)
     {
         return -1;
@@ -262,7 +260,6 @@ int Smack::next_frame()
 
 int Smack::encode_frame()
 {
-
     return 0;
 }
 
@@ -297,7 +294,7 @@ int play_smack(const char *filename, int32_t vertical_indent, int32_t is_skippab
     {
         return 0;
     }
-    if(!File::exist(filename))
+    if (!File::exist(filename))
     {
         std::cout << "ERROR: SMACK file missing: " << filename << std::endl;
         return -1;
@@ -311,6 +308,7 @@ Smack *open_smack(const char *filename)
     Smack *video = new Smack;
     video->load(filename);
     video->enable_video_audio();
+    video->set_smack_palette();
     video->play_audio();
     return video;
 }
@@ -325,9 +323,10 @@ void smack_close(Smack *video)
     video = nullptr;
 }
 
-void smack_to_buffer(Smack* video, uint32_t Unknown1, uint32_t Unknown2, uint32_t Stride, uint32_t FrameHeightInPixels, uint8_t* OutBuffer, uint32_t Flags)
+void smack_to_buffer(
+    Smack *video, uint32_t left, uint32_t top, uint32_t pitch, uint32_t destheight, uint8_t *out_buffer, uint32_t reversed)
 {
-    video->video_frame_to_buffer(OutBuffer, Stride, FrameHeightInPixels);
+    video->video_frame_to_buffer(out_buffer, pitch, destheight);
 }
 
 void smack_next_frame(Smack *video)
@@ -335,7 +334,25 @@ void smack_next_frame(Smack *video)
     video->next_frame();
 }
 
-void smack_wait(Smack* video)
+void smack_wait(Smack *video)
 {
     video->wait_next_frame();
+}
+
+void test1()
+{
+    Smack *video = open_smack("GAMEGFX/BRF_B4.SMK");
+    uint8_t *buffer = new uint8_t[640 * 640];
+
+    for (int frame = 0; frame < 400; frame++)
+    {
+        smack_to_buffer(video, 0, 0, 640, 480, buffer, 0);
+        GAME_WINDOW.fill_screen_surface(buffer, 0, 0, 0, 0, 640, 480, 640);
+        GAME_WINDOW.redraw();
+        smack_next_frame(video);
+        smack_wait(video);
+    }
+
+    delete[] buffer;
+    smack_close(video);
 }

@@ -70,7 +70,7 @@ int Sound::init()
 
 int Sound::add_raw(uint8_t *raw_ptr, int filesize, int samplerate, int bitrate, int num_channels)
 {
-    if (!m_sound_was_initted)
+    if (!m_sound_was_initted || !raw_ptr)
     {
         return -1;
     }
@@ -95,7 +95,7 @@ int Sound::add_music(uint8_t *raw_ptr, int filesize, int samplerate, int bitrate
 
 int Sound::play_sound(int channel_index, int x, int y, bool loop)
 {
-    if (!m_sound_was_initted)
+    if (!m_sound_was_initted || channel_index < 0)
     {
         return -1;
     }

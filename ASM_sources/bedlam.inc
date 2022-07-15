@@ -77,6 +77,11 @@ extrn saves_exist:proc
 extrn hiscores_exist:proc
 
 extrn play_smack:proc
+extrn open_smack:proc
+extrn smack_close:proc
+extrn smack_wait:proc
+extrn smack_to_buffer:proc
+extrn smack_next_frame:proc
 
 ;==========================================================
 
