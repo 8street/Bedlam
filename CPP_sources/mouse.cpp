@@ -27,6 +27,7 @@ volatile int32_t MOUSE_BUTTONS_STATE1;
 volatile int32_t MOUSE_CLICK;
 
 int32_t MOUSE_UP;
+bool MOUSE_IS_CLICKED;
 
 // 00425AB9 Bedlam 1
 void mouse_update()
@@ -107,21 +108,21 @@ void show_cursor()
 }
 
 // 0041BF35 Bedlam 1
-void mouse_buttons(uint16_t r_butt, uint16_t l_button)
+void bedlam_mouse_buttons(uint16_t state_1, uint16_t state_2)
 {
-    if (!r_butt && !l_button)
+    if (!state_1 && !state_2)
     {
         MOUSE_BUTTONS_STATE = set_bit(MOUSE_BUTTONS_STATE, 0);
     }
-    if (!r_butt && l_button)
+    if (!state_1 && state_2)
     {
         MOUSE_BUTTONS_STATE = reset_bit(MOUSE_BUTTONS_STATE, 0);
     }
-    if (r_butt && !l_button)
+    if (state_1 && !state_2)
     {
         MOUSE_BUTTONS_STATE = set_bit(MOUSE_BUTTONS_STATE, 1);
     }
-    if (r_butt && l_button)
+    if (state_1 && state_2)
     {
         MOUSE_BUTTONS_STATE = reset_bit(MOUSE_BUTTONS_STATE, 1);
     }
@@ -140,4 +141,21 @@ bool mouse_right_button_pressed()
 bool mouse_left_button_pressed()
 {
     return check_bit(MOUSE_BUTTONS_STATE, 0);
+}
+
+void set_mouse_click()
+{
+    MOUSE_IS_CLICKED = true;
+}
+
+void reset_mouse_click()
+{
+    MOUSE_IS_CLICKED = false;
+}
+
+bool mouse_clicked()
+{
+    bool ret_val = MOUSE_IS_CLICKED;
+    MOUSE_IS_CLICKED = false;
+    return ret_val;
 }

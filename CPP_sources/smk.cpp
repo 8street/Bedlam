@@ -130,6 +130,7 @@ int Smack::play_video(bool is_skippable)
     const int start_x = get_video_pos_x();
     const int start_y = get_video_pos_y();
     m_frame_timer.reset();
+    mouse_clicked();
     // Output video
     for (cur_frame = 0; cur_frame < m_num_frames; cur_frame++)
     {
@@ -137,7 +138,7 @@ int Smack::play_video(bool is_skippable)
             const_cast<uint8_t *>(image_data), start_x, start_y, 0, 0, m_width, m_height, m_width);
         ret_val |= GAME_WINDOW.redraw();
         ret_val |= SDL_events();
-        if (is_skippable && (mouse_left_button_pressed() || mouse_right_button_pressed() || GAME_KEYBOARD.any_key_pressed()))
+        if (is_skippable && (mouse_clicked() || GAME_KEYBOARD.any_key_pressed()))
         {
             break;
         }
@@ -290,7 +291,7 @@ int Smack::play_audio()
 //////// Function calls from bedlam.asm ///////////
 
 // 0044567C Bedlam1
-int play_smack(const char *filename, int32_t vertical_indent)
+int play_smack(const char *filename, int32_t vertical_indent, int32_t is_skippable)
 {
     if (!cinematics_is_enable())
     {
@@ -302,7 +303,7 @@ int play_smack(const char *filename, int32_t vertical_indent)
         return -1;
     }
     Smack video(filename);
-    return video.play(true);
+    return video.play(is_skippable);
 }
 
 Smack *open_smack(const char *filename)

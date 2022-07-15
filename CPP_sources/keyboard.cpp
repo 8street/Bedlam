@@ -118,6 +118,7 @@ int Keyboard::key_up(SDL_Keycode sdl_keycode)
 {
     uint8_t bedlam_scancode = get_ordinary_scancode_from_sdl_keycode(sdl_keycode);
     bedlam_keystates_update(bedlam_scancode, true);
+    m_any_key_pressed = false;
     return 0;
 }
 

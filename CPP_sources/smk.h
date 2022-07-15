@@ -47,4 +47,4 @@ private:
 };
 
 //////// Function calls from bedlam.asm ///////////
-extern "C" int play_smack(const char *filename, int32_t vertical_indent);
+extern "C" int play_smack(const char *filename, int32_t vertical_indent, int32_t is_skippable);

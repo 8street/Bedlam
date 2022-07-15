@@ -40,23 +40,25 @@ int mouse_events(const SDL_Event &event)
     {
         if (event.button.button == SDL_BUTTON_LEFT)
         {
-            mouse_buttons(0, 0);
+            bedlam_mouse_buttons(0, 0);
         }
         if (event.button.button == SDL_BUTTON_RIGHT)
         {
-            mouse_buttons(1, 0);
+            bedlam_mouse_buttons(1, 0);
         }
+        set_mouse_click();
     }
     if (event.type == SDL_MOUSEBUTTONUP)
     {
         if (event.button.button == SDL_BUTTON_LEFT)
         {
-            mouse_buttons(0, 1);
+            bedlam_mouse_buttons(0, 1);
         }
         if (event.button.button == SDL_BUTTON_RIGHT)
         {
-            mouse_buttons(1, 1);
+            bedlam_mouse_buttons(1, 1);
         }
+        reset_mouse_click();
     }
     return 0;
 }
