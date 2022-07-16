@@ -250,7 +250,15 @@ int Smack::next_frame()
         return -1;
     }
     SDL_events();
-    int ret_val = smk_next(m_smack_ptr);
+    int ret_val = 0;
+    if (is_over())
+    {
+        smk_first(m_smack_ptr);
+    }
+    else
+    {
+        ret_val |= smk_next(m_smack_ptr);
+    }
     if (ret_val == -1)
     {
         return -1;
@@ -263,7 +271,7 @@ int Smack::encode_frame()
     return 0;
 }
 
-int Smack::video_frame_to_buffer(uint8_t *buffer, int buffer_width, int buffer_height)
+int Smack::video_frame_to_buffer(uint8_t *buffer, int buffer_width, int buffer_height) const
 {
     if (!m_smack_ptr)
     {
@@ -283,6 +291,21 @@ int Smack::play_audio()
         return -1;
     }
     return play_audio(get_first_existing_track());
+}
+
+bool Smack::is_over() const
+{
+    if (!m_smack_ptr)
+    {
+        return true;
+    }
+    unsigned long cur_frame;
+    smk_info_all(m_smack_ptr, &cur_frame, NULL, NULL);
+    if (cur_frame >= m_num_frames - 1)
+    {
+        return true;
+    }
+    return false;
 }
 
 //////// Function calls from bedlam.asm ///////////
@@ -339,20 +362,7 @@ void smack_wait(Smack *video)
     video->wait_next_frame();
 }
 
-void test1()
+int32_t smack_over(Smack *video)
 {
-    Smack *video = open_smack("GAMEGFX/BRF_B4.SMK");
-    uint8_t *buffer = new uint8_t[640 * 640];
-
-    for (int frame = 0; frame < 400; frame++)
-    {
-        smack_to_buffer(video, 0, 0, 640, 480, buffer, 0);
-        GAME_WINDOW.fill_screen_surface(buffer, 0, 0, 0, 0, 640, 480, 640);
-        GAME_WINDOW.redraw();
-        smack_next_frame(video);
-        smack_wait(video);
-    }
-
-    delete[] buffer;
-    smack_close(video);
+    return video->is_over();
 }

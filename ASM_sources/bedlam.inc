@@ -82,6 +82,7 @@ extrn smack_close:proc
 extrn smack_wait:proc
 extrn smack_to_buffer:proc
 extrn smack_next_frame:proc
+extrn smack_over:proc
 
 ;==========================================================
 
