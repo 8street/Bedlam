@@ -8,12 +8,13 @@ cd o || exit 1
 rm -rf -- *
 
 echo                                          
-echo ============= run clang++-12 compiler =============
-clang++-12 -m32 -c ../../CPP_sources/*.cpp -std=c++17 $(pkg-config --cflags SDL2_mixer sdl2)
+echo ============= run clang compiler =============
+clang-12 -m32 -c ../../libsmacker-1.2.0/*.c
+clang++-12 -m32 -c -I ../../libsmacker-1.2.0/ ../../CPP_sources/*.cpp -std=c++17 $(pkg-config --cflags SDL2_mixer sdl2)
 
 echo                                          
 echo ============= run jwasm compiler =============
-jwasm -elf -c -zcw ../../ASM_sources/bedlam2.asm
+jwasm -elf -c -zcw ../../ASM_sources/bedlam.asm
 
 cd ..
 
