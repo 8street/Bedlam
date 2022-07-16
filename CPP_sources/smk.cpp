@@ -306,10 +306,6 @@ bool Smack::is_over() const
 // 0044567C Bedlam1
 int play_smack(const char *filename, int32_t vertical_indent, int32_t is_skippable)
 {
-    if (!cinematics_is_enable())
-    {
-        return 0;
-    }
     if (!File::exist(filename))
     {
         std::cout << "ERROR: SMACK file missing: " << filename << std::endl;
@@ -321,6 +317,11 @@ int play_smack(const char *filename, int32_t vertical_indent, int32_t is_skippab
 
 Smack *open_smack(const char *filename)
 {
+    if (!File::exist(filename))
+    {
+        std::cout << "ERROR: SMACK file missing: " << filename << std::endl;
+        return nullptr;
+    }
     Smack *video = new Smack;
     video->load(filename);
     video->enable_video_audio();

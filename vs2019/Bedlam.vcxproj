@@ -128,15 +128,15 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\SDL2_mixer\lib\x86;$(ProjectDir)..\SDL2\lib\x86;$(ProjectDir)..\libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\SDL2_mixer\lib\x86;$(ProjectDir)..\SDL2\lib\x86;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <IntDir>$(SolutionDir)$(Configuration)\temp\</IntDir>
     <SourcePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\ASM_sources;$(ProjectDir)..\CPP_sources;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(ProjectDir)..\ASM_includes;$(IncludePath)</IncludePath>
-    <LibraryPath>$(ProjectDir)..\SDL2_mixer\lib\x86;$(ProjectDir)..\SDL2\lib\x86;$(ProjectDir)..\libs;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
+    <IncludePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\CPP_sources;$(ProjectDir)..\SDL2_mixer\include;$(ProjectDir)..\SDL2\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)..\SDL2_mixer\lib\x86;$(ProjectDir)..\SDL2\lib\x86;$(VC_LibraryPath_x86);$(WindowsSDK_LibraryPath_x86)</LibraryPath>
     <IntDir>$(SolutionDir)$(Configuration)\temp\</IntDir>
     <SourcePath>$(ProjectDir)..\libsmacker-1.2.0;$(ProjectDir)..\ASM_sources;$(ProjectDir)..\CPP_sources;$(VC_SourcePath);</SourcePath>
   </PropertyGroup>
@@ -153,7 +153,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>legacy_stdio_definitions.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;smackw32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -173,7 +173,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>legacy_stdio_definitions.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;smackw32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>legacy_stdio_definitions.lib;SDL2.lib;SDL2main.lib;SDL2_mixer.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
     </Link>
   </ItemDefinitionGroup>
