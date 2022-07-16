@@ -10,6 +10,9 @@
     <Filter Include="libsmacker-1.2.0">
       <UniqueIdentifier>{b4bfdfee-3d04-4219-b2c6-87310d4a16fc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="linux">
+      <UniqueIdentifier>{584d279a-2498-4c42-a173-eba545b5ad44}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
@@ -21,6 +24,15 @@
       <Filter>ASM sources</Filter>
     </None>
     <None Include="..\.clang-format" />
+    <None Include="..\linux\prepare.sh">
+      <Filter>linux</Filter>
+    </None>
+    <None Include="..\linux\readme.md">
+      <Filter>linux</Filter>
+    </None>
+    <None Include="..\linux\compile.sh">
+      <Filter>linux</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <MASM Include="..\ASM_sources\bedlam.asm">

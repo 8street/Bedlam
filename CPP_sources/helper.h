@@ -25,3 +25,5 @@ template<class T> bool check_bit(T number, uint32_t bit)
 {
     return (number >> bit) & 1U;
 }
+
+bool str_are_equal(const char *str1, const char *str2);

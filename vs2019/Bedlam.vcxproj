@@ -15,6 +15,9 @@
     <None Include="..\.gitignore" />
     <None Include="..\ASM_sources\bedlam.inc" />
     <None Include="..\ASM_sources\bedlam_data.inc" />
+    <None Include="..\linux\compile.sh" />
+    <None Include="..\linux\prepare.sh" />
+    <None Include="..\linux\readme.md" />
     <None Include="..\README.md" />
   </ItemGroup>
   <ItemGroup>

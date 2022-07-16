@@ -32,6 +32,7 @@ vc2019/Release*/
 *~
 \#*
 gmon.out
+*.err
 
 # System Files
 .DS_Store

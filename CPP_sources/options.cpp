@@ -4,6 +4,7 @@
 #include <SDL.h>
 
 #include "file.h"
+#include "helper.h"
 #include "options.h"
 
 Options GAME_OPTIONS;
@@ -164,32 +165,32 @@ int32_t Options::get_system_language() const
     }
     while (locales->language)
     {
-        if (!_stricmp(locales->language, "en"))
+        if (str_are_equal(locales->language, "en"))
         {
             language = 0;
             break;
         }
-        else if (!_stricmp(locales->language, "de") && File::exist("LANGUAGE.GER"))
+        else if (str_are_equal(locales->language, "de") && File::exist("LANGUAGE.GER"))
         {
             language = 1;
             break;
         }
-        else if (!_stricmp(locales->language, "es") && File::exist("LANGUAGE.SPA"))
+        else if (str_are_equal(locales->language, "es") && File::exist("LANGUAGE.SPA"))
         {
             language = 2;
             break;
         }
-        else if (!_stricmp(locales->language, "fr") && File::exist("LANGUAGE.FRE"))
+        else if (str_are_equal(locales->language, "fr") && File::exist("LANGUAGE.FRE"))
         {
             language = 3;
             break;
         }
-        else if (!_stricmp(locales->language, "it") && File::exist("LANGUAGE.ITL"))
+        else if (str_are_equal(locales->language, "it") && File::exist("LANGUAGE.ITL"))
         {
             language = 4;
             break;
         }
-        else if (!_stricmp(locales->language, "nl") && File::exist("LANGUAGE.DCH"))
+        else if (str_are_equal(locales->language, "nl") && File::exist("LANGUAGE.DCH"))
         {
             language = 5;
             break;

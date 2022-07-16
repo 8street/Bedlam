@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <math.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "helper.h"
 
@@ -62,4 +63,13 @@ std::string to_upper(const std::string &str)
     std::string ret_str(str);
     std::transform(ret_str.begin(), ret_str.end(), ret_str.begin(), ::toupper);
     return ret_str;
+}
+
+bool str_are_equal(const char *str1, const char *str2)
+{
+#ifdef _MSC_VER
+    return !_stricmp(str1, str2);
+#else
+    return !strcasecmp(str1, str2);
+#endif
 }
