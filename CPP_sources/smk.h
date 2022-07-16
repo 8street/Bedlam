@@ -21,7 +21,6 @@ public:
     int play(bool is_skippable = true);
     int wait_next_frame();
     int next_frame();
-    int encode_frame();
     int video_frame_to_buffer(uint8_t *buffer, int buffer_width, int buffer_height) const;
     int enable_video_audio();
     int play_audio();

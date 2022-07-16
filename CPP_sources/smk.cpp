@@ -156,8 +156,6 @@ int Smack::play_audio(int track)
     int ret_val = 0;
     ret_val |= smk_enable_audio(m_smack_ptr, track, 1);
     smk_first(m_smack_ptr);
-    unsigned long cur_frame;
-    ret_val |= smk_info_all(m_smack_ptr, &cur_frame, NULL, NULL);
     std::vector<uint8_t> audio_data;
     ret_val |= fill_audio_data(audio_data, track);
     ret_val |= smk_enable_audio(m_smack_ptr, track, 0);
@@ -266,11 +264,6 @@ int Smack::next_frame()
     return 0;
 }
 
-int Smack::encode_frame()
-{
-    return 0;
-}
-
 int Smack::video_frame_to_buffer(uint8_t *buffer, int buffer_width, int buffer_height) const
 {
     if (!m_smack_ptr)
@@ -355,6 +348,7 @@ void smack_to_buffer(
 void smack_next_frame(Smack *video)
 {
     video->next_frame();
+    video->set_smack_palette();
 }
 
 void smack_wait(Smack *video)
