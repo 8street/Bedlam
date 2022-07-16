@@ -7,8 +7,6 @@
 #include "sdl_sound.h"
 #include "sdl_timer.h"
 #include "sdl_window.h"
-#include "smk.h"
-
 
 int main(int argc, char *argv[])
 {
