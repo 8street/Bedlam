@@ -11,12 +11,8 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\libs\smackw32.lib" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\.clang-format" />
     <None Include="..\.gitignore" />
-    <None Include="..\ASM_includes\smackw32.inc" />
     <None Include="..\ASM_sources\bedlam.inc" />
     <None Include="..\ASM_sources\bedlam_data.inc" />
     <None Include="..\README.md" />

@@ -1,12 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Libs">
-      <UniqueIdentifier>{5d33b598-c9cf-473b-8f92-7e2673dca224}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ASM includes">
-      <UniqueIdentifier>{a0963acd-fa2a-42ba-8633-31eb8d92b7e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ASM sources">
       <UniqueIdentifier>{c1bff3d2-3467-4467-901c-f1fd2e316ee7}</UniqueIdentifier>
     </Filter>
@@ -18,16 +12,8 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\libs\smackw32.lib">
-      <Filter>Libs</Filter>
-    </Library>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\README.md" />
     <None Include="..\.gitignore" />
-    <None Include="..\ASM_includes\smackw32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
     <None Include="..\ASM_sources\bedlam_data.inc">
       <Filter>ASM sources</Filter>
     </None>
