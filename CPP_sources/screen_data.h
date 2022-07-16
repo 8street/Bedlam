@@ -6,6 +6,13 @@
 #include "bedlam_draw.h"
 #include "sdl_texture.h"
 
+enum class Palette_mode
+{
+    none,
+    normal,
+    Bedlam = 4,
+};
+
 /// <summary>
 /// A class that binds a old output DOS format and a state of art texture format.
 /// m_surface - screen surface in index8 DOS format. This is not accelerated, and slow for rendering.
@@ -22,7 +29,7 @@ public:
     int init(
         uint8_t *screen_buffer, int surface_width, int surface_height, int img_width = ORIGINAL_GAME_WIDTH,
         int img_height = ORIGINAL_GAME_HEIGHT, int offset_x = 0, int offset_y = 0);
-    int set_palette(const uint8_t *pal_ptr, int offset, int num_entries);
+    int set_palette(const uint8_t *pal_ptr, int offset, int num_entries, Palette_mode mode);
     int set_palette(const File &palette_file);
     uint8_t *get_RGB_palette_ptr();
     int fill_screen_surface(uint8_t *buffer_ptr);
@@ -35,6 +42,7 @@ public:
     int clear();
     SDL_Texture *get_texture();
     int copy_surface_to_buffer(uint8_t *buffer_ptr);
+    int copy_surface_to_buffer(uint8_t *buffer_ptr, int buffer_width, int buffer_height);
     int get_surface_width() const;
     int get_surface_height() const;
     const SDL_Rect *get_texture_coord() const;

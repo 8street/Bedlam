@@ -39,6 +39,7 @@ public:
         uint32_t num_channels = 1);
     WAV(const File &file, uint32_t samplerate = 11025, uint32_t bits_per_sample = 8, uint32_t num_channels = 1);
     WAV(const std::string &path);
+    WAV(const WAV &wav);
     ~WAV();
 
     int load_from_path(const std::string &path);

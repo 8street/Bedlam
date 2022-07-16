@@ -55,7 +55,7 @@ int Screen_data::init(
     return ret_val;
 }
 
-int Screen_data::set_palette(const uint8_t *pal_ptr, int offset, int num_entries)
+int Screen_data::set_palette(const uint8_t *pal_ptr, int offset, int num_entries, Palette_mode mode)
 {
     int ret_val = 0;
     SDL_Color color;
@@ -68,12 +68,13 @@ int Screen_data::set_palette(const uint8_t *pal_ptr, int offset, int num_entries
     {
         ret_val |= 1;
     }
+    const int int_gain = static_cast<int>(mode);
     int n = 0;
     for (int i = offset; i < num_entries; i++)
     {
-        color.r = 4 * pal_ptr[n * 3];
-        color.g = 4 * pal_ptr[n * 3 + 1];
-        color.b = 4 * pal_ptr[n * 3 + 2];
+        color.r = int_gain * pal_ptr[n * 3];
+        color.g = int_gain * pal_ptr[n * 3 + 1];
+        color.b = int_gain * pal_ptr[n * 3 + 2];
         color.a = 0;
         n++;
 
@@ -101,7 +102,7 @@ int Screen_data::set_palette(const File &palette_file)
     {
         num_entries = 256;
     }
-    return set_palette(palette_ptr, offset, num_entries);
+    return set_palette(palette_ptr, offset, num_entries, Palette_mode::Bedlam);
 }
 
 uint8_t *Screen_data::get_RGB_palette_ptr()
@@ -227,16 +228,21 @@ SDL_Texture *Screen_data::get_texture()
 
 int Screen_data::copy_surface_to_buffer(uint8_t *buffer_ptr)
 {
+    return copy_surface_to_buffer(buffer_ptr, ORIGINAL_GAME_WIDTH, ORIGINAL_GAME_HEIGHT);
+}
+
+int Screen_data::copy_surface_to_buffer(uint8_t *buffer_ptr, int buffer_width, int buffer_height)
+{
     int ret_val = 0;
     if (m_must_lock_surface)
     {
         ret_val |= SDL_LockSurface(m_surface);
     }
     uint8_t *source = (uint8_t *)m_surface->pixels;
-    for (int y = 0; y < ORIGINAL_GAME_HEIGHT; y++)
+    for (int y = 0; y < buffer_height; y++)
     {
-        memcpy(buffer_ptr, source, ORIGINAL_GAME_WIDTH);
-        buffer_ptr += ORIGINAL_GAME_WIDTH;
+        memcpy(buffer_ptr, source, buffer_width);
+        buffer_ptr += buffer_width;
         source += m_surface->w;
     }
     if (m_must_lock_surface)

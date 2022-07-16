@@ -37,6 +37,7 @@ extrn unlock_screen_surface:proc
 
 extrn show_cursor:proc
 extrn hide_cursor:proc
+extrn set_cursor_icon:proc
 
 extrn play_sound:proc
 extrn play_music:proc
@@ -75,6 +76,14 @@ extrn hiscores_to_disk:proc
 extrn saves_exist:proc
 extrn hiscores_exist:proc
 
+extrn play_smack:proc
+extrn open_smack:proc
+extrn smack_close:proc
+extrn smack_wait:proc
+extrn smack_to_buffer:proc
+extrn smack_next_frame:proc
+extrn smack_over:proc
+
 ;==========================================================
 
 extrn SCREEN_BUFFER_PTR:dword
@@ -98,7 +107,6 @@ extrn TILES_START_POS_Y:dword
 extrn Z_BUFFER_PTR:dword
 extrn DISPLACE_ROBOT_ORIGIN_Y:dword
 
-extrn CURSOR_ICON:dword
 extrn CURSOR_POS_X:dword
 extrn CURSOR_POS_Y:dword
 extrn CURSOR_POS_LCLICK_X:dword

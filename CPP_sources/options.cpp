@@ -169,27 +169,27 @@ int32_t Options::get_system_language() const
             language = 0;
             break;
         }
-        else if (!_stricmp(locales->language, "de"))
+        else if (!_stricmp(locales->language, "de") && File::exist("LANGUAGE.GER"))
         {
             language = 1;
             break;
         }
-        else if (!_stricmp(locales->language, "es"))
+        else if (!_stricmp(locales->language, "es") && File::exist("LANGUAGE.SPA"))
         {
             language = 2;
             break;
         }
-        else if (!_stricmp(locales->language, "fr"))
+        else if (!_stricmp(locales->language, "fr") && File::exist("LANGUAGE.FRE"))
         {
             language = 3;
             break;
         }
-        else if (!_stricmp(locales->language, "it"))
+        else if (!_stricmp(locales->language, "it") && File::exist("LANGUAGE.ITL"))
         {
             language = 4;
             break;
         }
-        else if (!_stricmp(locales->language, "nl"))
+        else if (!_stricmp(locales->language, "nl") && File::exist("LANGUAGE.DCH"))
         {
             language = 5;
             break;
@@ -215,8 +215,7 @@ int32_t speechs_is_enable()
 
 int32_t cinematics_is_enable()
 {
-    // TODO: check all cinema files
-    if (!File::exist("GAMEGFX/BRF_DROP.SMK") || !File::exist("GAMEGFX/SHOP.SMK"))
+    if (!File::exist("GAMEGFX/BRF_DROP.SMK"))
     {
         return 0;
     }
@@ -237,6 +236,11 @@ int32_t get_misc()
 {
     // seems is censorship selector
     // or UK/US selector
+
+    if (!File::exist("GAMEGFX/LOGO_UK.SMK"))
+    {
+        return 1;
+    }
     return 0;
 }
 

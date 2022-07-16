@@ -11,8 +11,6 @@ cursor WINDOW_CURSOR;
 int16_t CURSOR_X1;
 int16_t CURSOR_Y1;
 
-volatile int CURSOR_ICON;
-
 volatile uint8_t UPDATE_CURSOR_BY_TIMER;
 
 volatile int32_t CURSOR_POS_X;
@@ -29,6 +27,7 @@ volatile int32_t MOUSE_BUTTONS_STATE1;
 volatile int32_t MOUSE_CLICK;
 
 int32_t MOUSE_UP;
+bool MOUSE_IS_CLICKED;
 
 // 00425AB9 Bedlam 1
 void mouse_update()
@@ -57,12 +56,12 @@ void mouse_update()
     get_cursor_pos(&pos_x, &pos_y);
     CURSOR_POS_X = pos_x;
     CURSOR_POS_Y = pos_y;
-    if ((MOUSE_BUTTONS_STATE1 & 1) != 0)
+    if (mouse_left_button_pressed())
     {
         CURSOR_POS_LCLICK_X = CURSOR_POS_X;
         CURSOR_POS_LCLICK_Y = CURSOR_POS_Y;
     }
-    if ((MOUSE_BUTTONS_STATE1 & 2) != 0)
+    if (mouse_right_button_pressed())
     {
         CURSOR_POS_RCLICK_X = CURSOR_POS_X;
         CURSOR_POS_RCLICK_Y = CURSOR_POS_Y;
@@ -72,11 +71,11 @@ void mouse_update()
     {
         if (CURSOR_POS_X < SIDEBAR_START_POS_X)
         {
-            CURSOR_ICON = ICON_CROSSHAIR;
+            set_cursor_icon(ICON_CROSSHAIR);
         }
         else
         {
-            CURSOR_ICON = ICON_CURSOR;
+            set_cursor_icon(ICON_CURSOR);
         }
     }
 }
@@ -109,22 +108,54 @@ void show_cursor()
 }
 
 // 0041BF35 Bedlam 1
-void mouse_buttons(uint16_t r_butt, uint16_t l_button)
+void bedlam_mouse_buttons(uint16_t state_1, uint16_t state_2)
 {
-    if (!r_butt && !l_button)
+    if (!state_1 && !state_2)
     {
-        MOUSE_BUTTONS_STATE |= 1;
+        MOUSE_BUTTONS_STATE = set_bit(MOUSE_BUTTONS_STATE, 0);
     }
-    if (!r_butt && l_button == 1)
+    if (!state_1 && state_2)
     {
-        MOUSE_BUTTONS_STATE &= 0xFE;
+        MOUSE_BUTTONS_STATE = reset_bit(MOUSE_BUTTONS_STATE, 0);
     }
-    if (r_butt == 1 && !l_button)
+    if (state_1 && !state_2)
     {
-        MOUSE_BUTTONS_STATE |= 2u;
+        MOUSE_BUTTONS_STATE = set_bit(MOUSE_BUTTONS_STATE, 1);
     }
-    if (r_butt == 1 && l_button == 1)
+    if (state_1 && state_2)
     {
-        MOUSE_BUTTONS_STATE &= 0xFFFFFFFD;
+        MOUSE_BUTTONS_STATE = reset_bit(MOUSE_BUTTONS_STATE, 1);
     }
+}
+
+void set_cursor_icon(int icon)
+{
+    WINDOW_CURSOR.set_cursor_icon(icon);
+}
+
+bool mouse_right_button_pressed()
+{
+    return check_bit(MOUSE_BUTTONS_STATE, 1);
+}
+
+bool mouse_left_button_pressed()
+{
+    return check_bit(MOUSE_BUTTONS_STATE, 0);
+}
+
+void set_mouse_click()
+{
+    MOUSE_IS_CLICKED = true;
+}
+
+void reset_mouse_click()
+{
+    MOUSE_IS_CLICKED = false;
+}
+
+bool mouse_clicked()
+{
+    bool ret_val = MOUSE_IS_CLICKED;
+    MOUSE_IS_CLICKED = false;
+    return ret_val;
 }

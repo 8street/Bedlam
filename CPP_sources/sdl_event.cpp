@@ -40,23 +40,25 @@ int mouse_events(const SDL_Event &event)
     {
         if (event.button.button == SDL_BUTTON_LEFT)
         {
-            mouse_buttons(0, 0);
+            bedlam_mouse_buttons(0, 0);
         }
         if (event.button.button == SDL_BUTTON_RIGHT)
         {
-            mouse_buttons(1, 0);
+            bedlam_mouse_buttons(1, 0);
         }
+        set_mouse_click();
     }
     if (event.type == SDL_MOUSEBUTTONUP)
     {
         if (event.button.button == SDL_BUTTON_LEFT)
         {
-            mouse_buttons(0, 1);
+            bedlam_mouse_buttons(0, 1);
         }
         if (event.button.button == SDL_BUTTON_RIGHT)
         {
-            mouse_buttons(1, 1);
+            bedlam_mouse_buttons(1, 1);
         }
+        reset_mouse_click();
     }
     return 0;
 }
@@ -87,10 +89,6 @@ int cursor_events(const SDL_Event &event)
         if (event.user.type == SDL_USEREVENT && event.user.code == 1)
         {
             const int icon = WINDOW_CURSOR.get_cursor_img();
-            if (icon != CURSOR_ICON)
-            {
-                ret_val |= WINDOW_CURSOR.set_cursor_icon(CURSOR_ICON);
-            }
             if (icon == ICON_WAIT)
             {
                 ret_val |= WINDOW_CURSOR.update_waiting_cursor();

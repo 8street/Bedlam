@@ -1,30 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Libs">
-      <UniqueIdentifier>{5d33b598-c9cf-473b-8f92-7e2673dca224}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ASM includes">
-      <UniqueIdentifier>{a0963acd-fa2a-42ba-8633-31eb8d92b7e7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ASM sources">
       <UniqueIdentifier>{c1bff3d2-3467-4467-901c-f1fd2e316ee7}</UniqueIdentifier>
     </Filter>
     <Filter Include="CPP sources">
       <UniqueIdentifier>{a72a703b-a2c8-45e1-95a1-fce062007e35}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\libs\smackw32.lib">
-      <Filter>Libs</Filter>
-    </Library>
+    <Filter Include="libsmacker-1.2.0">
+      <UniqueIdentifier>{b4bfdfee-3d04-4219-b2c6-87310d4a16fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\README.md" />
     <None Include="..\.gitignore" />
-    <None Include="..\ASM_includes\smackw32.inc">
-      <Filter>ASM includes</Filter>
-    </None>
     <None Include="..\ASM_sources\bedlam_data.inc">
       <Filter>ASM sources</Filter>
     </None>
@@ -120,6 +109,18 @@
     <ClInclude Include="..\CPP_sources\save.h">
       <Filter>CPP sources</Filter>
     </ClInclude>
+    <ClInclude Include="..\CPP_sources\smk.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libsmacker-1.2.0\smacker.h">
+      <Filter>libsmacker-1.2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libsmacker-1.2.0\smk_malloc.h">
+      <Filter>libsmacker-1.2.0</Filter>
+    </ClInclude>
+    <ClInclude Include="..\CPP_sources\music_chunk.h">
+      <Filter>CPP sources</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\CPP_sources\sdl_cursor.cpp">
@@ -201,6 +202,15 @@
       <Filter>CPP sources</Filter>
     </ClCompile>
     <ClCompile Include="..\CPP_sources\save.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\smk.cpp">
+      <Filter>CPP sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\libsmacker-1.2.0\smacker.c">
+      <Filter>libsmacker-1.2.0</Filter>
+    </ClCompile>
+    <ClCompile Include="..\CPP_sources\music_chunk.cpp">
       <Filter>CPP sources</Filter>
     </ClCompile>
   </ItemGroup>

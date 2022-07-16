@@ -22,6 +22,13 @@ WAV::WAV(const std::string &path)
     load_from_path(path);
 }
 
+WAV::WAV(const WAV &wav)
+{ 
+    m_wav_data.clear();
+    m_wav_data.reserve(wav.get_size());
+    m_wav_data.insert(m_wav_data.end(), wav.get_data(), wav.get_data() + wav.get_size());
+}
+
 WAV::~WAV()
 {
 }
