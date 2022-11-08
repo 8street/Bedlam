@@ -19,7 +19,7 @@ The sources can be compiled and fully playable in single player mode. All known 
 
 # List of changes
 
-* Port to SDL (working on Windows and Linux)
+* Port to SDL (working on Windows. Linux also should work but not tested)
 * Fix some bugs
 
 # Contributing
