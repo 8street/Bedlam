@@ -6,9 +6,10 @@ extrn fwrite:proc
 extrn fseek:proc
 extrn ftell:proc
 extrn fflush:proc
-extrn flushall:proc
+;extrn flushall:proc
 
 extrn printf:proc
+extrn sprintf:proc
 extrn puts:proc
 extrn putchar:proc
 extrn getcwd:proc
