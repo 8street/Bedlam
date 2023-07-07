@@ -33,7 +33,7 @@ IDA reverse file of the original Bedlam.exe [here](https://www.dropbox.com/sh/h0
 
 ### Windows
 
-1. Open solution vs2019/Bedlam.sln in Visual Studio 2019
+1. Open solution vs2019/Bedlam.sln in Visual Studio 2022
 2. Compile x86 platform
 3. Get original DOS or Windows95 game Bedlam (1996). The Windows95 version is better because it contain all .SMK movies and various language files.
 4. Put compiled .exe, SDL2.dll, SDL2_mixer.dll files in your original Bedlam folder. Or put Bedlam files in VS output directory
