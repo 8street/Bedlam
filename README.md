@@ -1,8 +1,6 @@
 
 # Bedlam
 
-[![Lines of Code](https://tokei.rs/b1/github/8street/Bedlam?category=code)](https://github.com/XAMPPRocky/tokei)
-
 Source code for Bedlam (1996 year) executable file. To preserve the cultural heritage. Working on modern Windows.
 
 This repository does not contain any original game resources.
@@ -20,6 +18,7 @@ The sources can be compiled and fully playable in single player mode. All known 
 # List of changes
 
 * Port to SDL (working on Windows. Linux also should work but not tested)
+* Improved Audio (Mixer 44.1kHz . More channels. Sounds a little better than original 11kHz)
 * Fix some bugs
 
 # Contributing
