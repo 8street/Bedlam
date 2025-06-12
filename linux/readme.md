@@ -10,7 +10,7 @@ You need:
 
 ```bash
 sudo apt update
-sudo apt install clang-12
+sudo apt install clang
 ```
 
 2. Compiler tools
