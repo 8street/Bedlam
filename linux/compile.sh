@@ -9,8 +9,8 @@ rm -rf -- *
 
 echo                                          
 echo ============= run clang compiler =============
-clang-12 -m32 -c ../../libsmacker-1.2.0/*.c
-clang++-12 -m32 -c -I ../../libsmacker-1.2.0/ ../../CPP_sources/*.cpp -std=c++17 $(pkg-config --cflags SDL2_mixer sdl2)
+clang -m32 -c ../../libsmacker-1.2.0/*.c
+clang++ -m32 -c -I ../../libsmacker-1.2.0/ ../../CPP_sources/*.cpp -std=c++17 $(pkg-config --cflags SDL2_mixer sdl2)
 
 echo                                          
 echo ============= run jwasm compiler =============
@@ -20,6 +20,6 @@ cd ..
 
 echo                                          
 echo ============= run ld linker =============
-clang++-12 -m32 o/*.o -o bedlam -lstdc++fs $(pkg-config --libs SDL2_mixer sdl2)
+clang++ -m32 o/*.o -o bedlam -lstdc++fs $(pkg-config --libs SDL2_mixer sdl2)
 
 chmod 755 bedlam
