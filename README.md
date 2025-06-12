@@ -1,7 +1,7 @@
 
 # Bedlam
 
-Source code for Bedlam (1996 year) executable file. To preserve the cultural heritage. Working on modern Windows.
+Source code for Bedlam (1996 year) executable file. To preserve the cultural heritage. Works on modern operating systems.
 
 This repository does not contain any original game resources.
 
