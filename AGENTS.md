@@ -159,8 +159,6 @@ GitHub Actions verify the other one on the pull request.
 - Do not write tests for the decompiled assembly in `ASM_sources/` or for
   generated `*.inc` data; validate ASM changes through both build
   configurations and manual runs with original game files.
-- Do not introduce test frameworks, test projects, or CI test jobs unless
-  explicitly requested.
 
 ### Diagnostics
 
