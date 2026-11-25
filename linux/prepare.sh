@@ -15,7 +15,7 @@ echo
 echo ============= setup JWasm =============
 git clone https://github.com/JWasm/JWasm.git
 cd JWasm || exit 1
-cmake .
+cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 .
 make
 sudo cp jwasm /usr/local/bin
 cd ..

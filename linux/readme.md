@@ -33,7 +33,7 @@ sudo apt install g++-multilib
 ```bash
 git clone https://github.com/JWasm/JWasm.git 
 cd JWasm 
-cmake . 
+cmake -DCMAKE_POLICY_VERSION_MINIMUM=3.5 . 
 make
 sudo cp jwasm /usr/local/bin 
 ```
